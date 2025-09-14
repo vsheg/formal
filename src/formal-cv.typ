@@ -1,0 +1,221 @@
+#import "@preview/fontawesome:0.2.0": fa-icon
+
+#let font-size = 10pt
+#let font-family = "New Computer Modern"
+#let accent-color = rgb("004d80")
+#let ghost-color = rgb(0, 0, 0, 50%)
+
+// Function to render a ghost text
+#let ghost(body, italic: false) = {
+  let txt = text(fill: ghost-color, body)
+  if italic { return emph(txt) }
+  return txt
+}
+
+// Main template function
+#let template(
+  body,
+  prefix: [],
+  name: [John Doe],
+  title: [Software Engineer],
+  location: [San Francisco, CA],
+  contacts: [],
+  links: [],
+  frame-width: 5mm,
+) = {
+  // Styles
+  set text(
+    size: font-size,
+    font: font-family,
+    hyphenate: true,
+    tracking: -0.02pt,
+    costs: (hyphenation: 0%, runt: 1000%),
+  )
+
+  show math.equation: set text(font: font-family)
+  show link: set text(font: "Menlo", size: 0.8em)
+  set list(
+    marker: (
+      text(font: "Menlo", size: 1.3em, baseline: -0.17em, "✴"),
+      text(size: 0.5em, baseline: +0.35em, "➤"),
+    ),
+    spacing: 0.65em,
+    tight: true,
+  )
+
+  show heading: it => {
+    set text(fill: accent-color, size: font-size, weight: 900)
+    block(strong(smallcaps(it.body)))
+  }
+
+  show raw: set text(size: 0.95em, font: "Menlo")
+
+  // Custom syntax
+  show ">": "•"
+  show "|": h(1fr)
+  show "+-": "±"
+  show "etc": emph("etc")
+
+  // Page frame
+  let frame = rect(
+    width: 100% - frame-width,
+    height: 100% - frame-width,
+    stroke: accent-color + frame-width,
+  )
+  set page(margin: 1.2cm, background: frame)
+
+  // Contact info
+  if location != none {
+    location = ghost(italic: true, location)
+  }
+  grid(
+    columns: (25%, 50%, 25%),
+    align: (left + horizon, center + horizon, right + horizon),
+    for contact in contacts {
+      contact + linebreak()
+    },
+    ghost(italic: false, prefix)
+      + [ ]
+      + text(size: 1.2em, weight: "bold", name)
+      + linebreak()
+      + emph(title)
+      + linebreak()
+      + location,
+    for link in links {
+      link + linebreak()
+    },
+  )
+
+  show "LaTeX": {
+    set text(font: "New Computer Modern")
+    box(
+      width: 2.55em,
+      {
+        [L]
+        place(top, dx: 0.3em, text(size: 0.7em)[A])
+        place(top, dx: 0.7em)[T]
+        place(top, dx: 1.26em, dy: 0.22em)[E]
+        place(top, dx: 1.8em)[X]
+      },
+    )
+  }
+
+
+  // CV body
+  set par(justify: true)
+  body
+}
+
+// Grid of keywords, e.g. to represent technical skills in a compact way
+#let keyword-grid(dict, n-rows: 4, row-gutter: 0.5em, column-gutter: 1em, columns: auto) = {
+  // Keyword group header representing 1st level item in a list
+  let n-groups = dict.len()
+  let group-title(name) = list.item(
+    name
+      + h(0.5em)
+      + box(
+        width: 1fr,
+        line(length: 100%, stroke: (dash: "loosely-dotted")),
+        baseline: -0.3em,
+      ),
+  )
+
+  // Split array into columns
+  let split-columns(values) = values.chunks(n-rows)
+
+  // Apply styles to a keyword representing 2nd level item in a list
+  let keyword(word) = list.with(marker: none)(list(word))
+
+  // Render a column of keywords
+  let grid-column(col-vals) = grid(rows: n-rows, row-gutter: row-gutter, ..col-vals.map(keyword))
+
+  // Render a group of keywords
+  let group-keywords(values) = {
+    let n-columns = calc.ceil(values.len() / n-rows)
+    let grid-not-intended = grid(columns: (1fr,) * n-columns, ..split-columns(values).map(
+        grid-column,
+      ))
+    grid(
+      columns: (0.9em, 1fr),
+      none, grid-not-intended,
+    )
+  }
+
+  // Render the final grid of keywords with group titles
+  if columns == auto {
+    columns = (auto,) * n-groups
+  }
+
+  grid(
+    rows: 2,
+    row-gutter: 0.3em,
+    columns: columns,
+    column-gutter: column-gutter,
+    ..dict.keys().map(title => group-title(strong(title))),
+    ..dict.values().map(group-keywords),
+  )
+}
+
+// About me block
+#let summary(body) = {
+  set par(justify: true)
+  v(1em)
+  align(
+    center,
+    block(width: 100%, body),
+  )
+}
+
+// CV list item
+#let list-item(
+  title: [],
+  title-comment: none,
+  organization: [],
+  organization-comment: none,
+  dates: [],
+  location: none,
+) = {
+  // Make the first line
+  let first-line = {
+    text(weight: "bold", title)
+    if title-comment != none { [ > ] + emph(title-comment) }
+    [|] + dates
+  }
+
+  // Make the second line
+  let second-line = {
+    set text(size: 0.9em)
+    emph(organization)
+    if organization-comment != none { ghost([ > ]) + ghost(italic: true, organization-comment) }
+    if location != none { [|] + emph(location) }
+  }
+
+  // Render the list item
+  first-line + linebreak()
+  second-line + linebreak()
+}
+
+#let small(body) = {
+  set text(size: 0.9em)
+  body
+}
+
+#let pub-item(title: [], journal: [], year: [], url: none) = {
+  strong(year) + h(0.5em)
+  title + [ > ]
+  emph(journal)
+}
+
+#let ref(url, prefix: "", icon: "globe") = {
+  show link: set text(font: font-family)
+  show: set text(fill: ghost-color)
+
+  if prefix != "" {
+    prefix = prefix + [: ]
+  }
+
+  let icon = fa-icon(icon, solid: true, size: 0.75em)
+
+  "[" + link(url, prefix + icon) + "]"
+}
+
