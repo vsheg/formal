@@ -1,4 +1,6 @@
 #import "formal-general.typ": *
+#import "@preview/fontawesome:0.6.0": fa-icon
+
 
 #let formal-cv(
   body,
@@ -54,9 +56,10 @@
 }
 
 // Grid of keywords, e.g. to represent technical skills in a compact way
-#let keyword-grid(dict, n-rows: 4, row-gutter: 0.5em, column-gutter: 1em, columns: auto) = {
+#let keyword-grid(n-rows: 4, row-gutter: 0.5em, column-gutter: 1em, columns: auto, ..skills) = {
   // Keyword group header representing 1st level item in a list
-  let n-groups = dict.len()
+  let skills = skills.named()
+  let n-groups = skills.len()
   let group-title(name) = list.item(
     name
       + h(0.5em)
@@ -98,23 +101,22 @@
     row-gutter: 0.3em,
     columns: columns,
     column-gutter: column-gutter,
-    ..dict.keys().map(title => group-title(strong(title))),
-    ..dict.values().map(group-keywords),
+    ..skills.keys().map(title => group-title(strong(title))),
+    ..skills.values().map(group-keywords),
   )
 }
 
 // About me block
 #let summary(body) = {
   set par(justify: true)
-  v(1em)
   align(
     center,
-    block(width: 100%, body),
+    block(width: 80%, body),
   )
 }
 
 // CV list item
-#let list-item(
+#let cv-item(
   title: [],
   title-comment: none,
   organization: [],
@@ -138,8 +140,7 @@
   }
 
   // Render the list item
-  first-line + linebreak()
-  second-line + linebreak()
+  first-line + linebreak() + second-line
 }
 
 #let small(body) = {
@@ -165,3 +166,8 @@
 
   "[" + link(url, prefix + icon) + "]"
 }
+
+#let label(body, dest: none, icon-name: none) = link(
+  dest,
+  ghost(fa-icon(icon-name, size: 0.75em)) + h(0.5em) + body,
+)

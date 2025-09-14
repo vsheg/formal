@@ -18,7 +18,6 @@
     size: font-size,
     font: font-family,
     hyphenate: true,
-    tracking: -0.02pt,
   )
 
   show heading: it => {
@@ -38,6 +37,7 @@
     spacing: 0.65em,
     tight: true,
   )
+
 
   body
 }
