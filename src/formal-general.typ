@@ -12,7 +12,7 @@
   return txt
 }
 
-#let formal-general(body) = {
+#let formal-general(frame-width: 5mm, body) = {
   set par(justify: true)
   set text(
     size: font-size,
@@ -38,6 +38,13 @@
     tight: true,
   )
 
+  // Page frame
+  let frame = rect(
+    width: 100% - frame-width,
+    height: 100% - frame-width,
+    stroke: accent-color + frame-width,
+  )
+  set page(margin: 1.2cm, background: frame)
 
   body
 }

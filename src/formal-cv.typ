@@ -14,20 +14,11 @@
 ) = {
   // Styles
 
-  show: formal-general
+  show: formal-general.with(frame-width: frame-width)
   show: formal-syntax
 
   show heading: set block(above: 1.5em, below: 1.2em)
 
-
-  // Page frame
-  let frame = rect(
-    width: 100% - frame-width,
-    height: 100% - frame-width,
-    stroke: accent-color + frame-width,
-  )
-
-  set page(margin: 1.2cm, background: frame)
 
   // Contact info
   if location != none {
