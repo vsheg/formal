@@ -1,9 +1,11 @@
 #import "../src/formal-cv.typ": *
 #import "@preview/fontawesome:0.6.0": *
 
-#show: template.with(
+#show: formal-cv.with(
   name: [Albert Einstein],
   prefix: [Dr.],
+  title: [Theoretical Physicist. Nobel Laureate],
+  location: [Princeton, New Jersey, USA],
   contacts: (
     link(
       "mailto:albert@einstein.edu",
@@ -14,8 +16,6 @@
       ghost(fa-icon("phone", size: 0.75em)) + h(0.5em) + "+1-999-XXX-YYYY",
     ),
   ),
-  title: [Theoretical Physicist. Nobel Laureate],
-  location: [Princeton, New Jersey, USA],
   links: (
     link(
       "https://alberteinstein.com",
@@ -25,10 +25,6 @@
     link("https://www.nobelprize.org/prizes/physics/1921/einstein", "Nobel Prize 1921"),
   ),
 )
-
-#set block(spacing: 0.9em)
-#show heading: it => { v(-0.2em) + it }
-
 
 #summary[
   Theoretical physicist with revolutionary contributions to modern physics spanning over 5 decades. Developed the theory of relativity, explained the photoelectric effect, and made fundamental contributions to quantum mechanics and statistical mechanics. Nobel Prize laureate and Fellow of the Royal Society. Dedicated advocate for civil rights, pacifism, and scientific internationalism.

@@ -1,19 +1,6 @@
-#import "@preview/fontawesome:0.2.0": fa-icon
+#import "formal-general.typ": *
 
-#let font-size = 10pt
-#let font-family = "New Computer Modern"
-#let accent-color = rgb("004d80")
-#let ghost-color = rgb(0, 0, 0, 50%)
-
-// Function to render a ghost text
-#let ghost(body, italic: false) = {
-  let txt = text(fill: ghost-color, body)
-  if italic { return emph(txt) }
-  return txt
-}
-
-// Main template function
-#let template(
+#let formal-cv(
   body,
   prefix: [],
   name: [John Doe],
@@ -24,37 +11,12 @@
   frame-width: 5mm,
 ) = {
   // Styles
-  set text(
-    size: font-size,
-    font: font-family,
-    hyphenate: true,
-    tracking: -0.02pt,
-    costs: (hyphenation: 0%, runt: 1000%),
-  )
 
-  show math.equation: set text(font: font-family)
-  show link: set text(font: "Menlo", size: 0.8em)
-  set list(
-    marker: (
-      text(font: "Menlo", size: 1.3em, baseline: -0.17em, "✴"),
-      text(size: 0.5em, baseline: +0.35em, "➤"),
-    ),
-    spacing: 0.65em,
-    tight: true,
-  )
+  show: formal-general
+  show: formal-syntax
 
-  show heading: it => {
-    set text(fill: accent-color, size: font-size, weight: 900)
-    block(strong(smallcaps(it.body)))
-  }
+  show heading: set block(above: 1.5em, below: 1.2em)
 
-  show raw: set text(size: 0.95em, font: "Menlo")
-
-  // Custom syntax
-  show ">": "•"
-  show "|": h(1fr)
-  show "+-": "±"
-  show "etc": emph("etc")
 
   // Page frame
   let frame = rect(
@@ -62,12 +24,14 @@
     height: 100% - frame-width,
     stroke: accent-color + frame-width,
   )
+
   set page(margin: 1.2cm, background: frame)
 
   // Contact info
   if location != none {
     location = ghost(italic: true, location)
   }
+
   grid(
     columns: (25%, 50%, 25%),
     align: (left + horizon, center + horizon, right + horizon),
@@ -86,23 +50,6 @@
     },
   )
 
-  show "LaTeX": {
-    set text(font: "New Computer Modern")
-    box(
-      width: 2.55em,
-      {
-        [L]
-        place(top, dx: 0.3em, text(size: 0.7em)[A])
-        place(top, dx: 0.7em)[T]
-        place(top, dx: 1.26em, dy: 0.22em)[E]
-        place(top, dx: 1.8em)[X]
-      },
-    )
-  }
-
-
-  // CV body
-  set par(justify: true)
   body
 }
 
@@ -218,4 +165,3 @@
 
   "[" + link(url, prefix + icon) + "]"
 }
-
