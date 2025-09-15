@@ -1,1 +1,3 @@
-# formal
+# Formal
+
+Formal template for Typst.
