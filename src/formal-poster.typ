@@ -9,11 +9,11 @@
   margin: 4cm,
   accent_color: rgb("004d80"),
   ghost_color: rgb(0, 0, 0, 60%),
-  left_column: "Left column",
   footer: "Footer",
   conference: "Conference",
   dates: "2024",
   contacts: [],
+  right-column: none,
   body,
 ) = {
   // Paper format
@@ -25,7 +25,11 @@
 
   let page_footer = {
     set text(fill: ghost_color)
-    grid(columns: (2fr, 3fr), gutter: 1em, align(right + top, contacts), align(right + top)[#conference \ #dates])
+    grid(
+      columns: (2fr, 3fr),
+      gutter: 1em,
+      align(right + top, contacts), align(right + top)[#conference \ #dates],
+    )
   }
 
   set page(paper: paper, margin: margin, footer: page_footer)
@@ -75,5 +79,13 @@
   set math.equation(numbering: "(1)")
 
   // Poster content
-  grid(columns: (2fr, 3fr), gutter: 3em)[#left_column \ #text(fill: ghost_color, footer)][#body]
+  grid(
+    columns: (2fr, 3fr),
+    gutter: 3em,
+    {
+      body
+      text(fill: ghost_color, footer)
+    },
+    right-column,
+  )
 }
