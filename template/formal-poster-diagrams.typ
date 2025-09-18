@@ -1,9 +1,18 @@
 #import "@preview/lilaq:0.4.0" as lq
 #import "@preview/colorful-boxes:1.4.3": outline-colorbox
 
+#let large = it => {
+  set lq.style(stroke: 4pt) // lines & marks pick this up
+  show: lq.set-spine(stroke: 2pt) // axis lines (spines)
+  show: lq.set-tick(stroke: 2pt) // tick marks
+  show: lq.set-grid(stroke: 2pt) // grid is independent; tune as you like
+  set text(size: 20pt)
+  it
+}
+
+#show: large
 
 #let plot-size = (width: 27cm, height: 13cm)
-#set text(size: 20pt)
 
 #let boxed(content, title: none) = {
   outline-colorbox(title: title, radius: 2mm)[

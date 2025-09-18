@@ -1,14 +1,14 @@
-#let template(
+#let formal-template(
   paper: "a1",
   lang: "en",
   title: "Title",
   authors: "Authors",
   department: "Department",
-  font_size: 16pt,
-  font_family: "STIX Two Text",
+  font-size: 16pt,
+  font-family: "New Computer Modern",
   margin: 4cm,
-  accent_color: rgb("004d80"),
-  ghost_color: rgb(0, 0, 0, 60%),
+  accent-color: rgb("004d80"),
+  ghost-color: rgb(0, 0, 0, 60%),
   footer: "Footer",
   conference: "Conference",
   dates: "2024",
@@ -17,14 +17,14 @@
   body,
 ) = {
   // Paper format
-  let font_size_title = font_size * 3.0
-  let font_size_authors = font_size * 1.5
-  let font_size_department = font_size * 1.2
+  let font-size-title = font-size * 3.0
+  let font-size-authors = font-size * 1.5
+  let font-size-department = font-size * 1.2
 
-  set text(font: font_family, size: font_size, lang: lang)
+  set text(font: font-family, size: font-size, lang: lang)
 
-  let page_footer = {
-    set text(fill: ghost_color)
+  let page-footer = {
+    set text(fill: ghost-color)
     grid(
       columns: (2fr, 3fr),
       gutter: 1em,
@@ -32,41 +32,48 @@
     )
   }
 
-  set page(paper: paper, margin: margin, footer: page_footer)
+  set page(paper: paper, margin: margin, footer: page-footer)
 
   // Style
 
-  set list(marker: text(font: "Menlo", fill: accent_color)[➤])
+  set list(marker: text(font: "Menlo", fill: accent-color)[➤])
 
   // Header
 
   {
+    // Decrease line spacing for main header
     set par(leading: 0.4em)
-    align(center, grid(
+
+    // Authors, affiliation, ...
+    set align(center)
+
+    grid(
       rows: 3,
       row-gutter: 1em,
-      text(size: font_size_title, title, fill: accent_color, weight: "medium"),
-      v(1em) + text(size: font_size_authors, authors, style: "italic", fill: ghost_color),
-      text(size: font_size_department, department, fill: ghost_color),
-    ))
+      text(size: font-size-title, fill: accent-color, weight: "medium", title),
+      // Empty line
+      none,
+      text(size: font-size-authors, style: "italic", fill: ghost-color, authors),
+      text(size: font-size-department, fill: ghost-color, department),
+    )
   }
 
   // Heading
 
-  let font_size_heading = font_size * 1.5
+  let font_size_heading = font-size * 1.5
 
   show heading.where(level: 1): it => {
     v(1.5em, weak: true)
-    set text(size: font_size_heading, weight: 900, fill: accent_color)
+    set text(size: font_size_heading, weight: 900, fill: accent-color)
     block[
-      #smallcaps(it.body) //#text(size: 1em, font: "Menlo")[✷]
+      #smallcaps(it.body)
     ]
     v(0.5em)
   }
 
   show heading.where(level: 2): it => {
     v(0.9em, weak: true)
-    text(size: font_size, fill: accent_color, style: "italic", it.body + [.])
+    text(size: font-size, fill: accent-color, style: "italic", it.body + [.])
   }
 
   v(5em, weak: true)
@@ -84,7 +91,7 @@
     gutter: 3em,
     {
       body
-      text(fill: ghost_color, footer)
+      text(fill: ghost-color, footer)
     },
     right-column,
   )

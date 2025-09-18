@@ -1,20 +1,19 @@
-#import "../src/formal-poster.typ": template
+#import "../src/formal-poster.typ": formal-template
 #import "@preview/cades:0.3.0": qr-code
 #import "@preview/physica:0.9.3": *
 
-
-#show: template.with(
+#show: formal-template.with(
   paper: "a1",
   lang: "en",
-  title: [On the Electrodynamics of Moving Bodies \ and the General Theory of Relativity],
+  title: [
+    On the Electrodynamics of Moving Bodies \
+    and the General Theory of Relativity
+  ],
   authors: [Albert Einstein],
   department: [Institute for Advanced Study, Princeton University],
   footer: [
-    Research conducted at the Institute for Advanced Study, Princeton, with support from the
-    Rockefeller Foundation and the Emergency Committee in Aid of Displaced Foreign Scholars.
-    #v(0.5em)
-    Work performed in collaboration with colleagues at Princeton University and the
-    Kaiser Wilhelm Institute for Physics, Berlin.
+    Work performed in collaboration with colleagues at Princeton University and
+    the Kaiser Wilhelm Institute for Physics, Berlin.
   ],
   right-column: { include "formal-poster-diagrams.typ" },
   conference: "International Congress of Physics 1955",
@@ -27,7 +26,7 @@
 - The nature of space, time, and gravity has puzzled physicists since Newton's era. Classical mechanics and electromagnetism appeared fundamentally incompatible, with Maxwell's equations suggesting light propagation at a fixed speed while Newtonian mechanics allowed arbitrary relative velocities, requiring a revolutionary revision of our understanding of the physical universe.
 
 - Special relativity, developed in 1905, established that space and time are unified into a four-dimensional spacetime continuum, with the speed of light $c$ as a universal constant defining the causal structure of the universe. This revolutionized our understanding of simultaneity, length contraction, and time dilation, fundamentally altering concepts of absolute space and time.
-  #align(center, [$ E = m c^2 $])
+  #align(center, [$ E = m dot c^2 $])
 
 - General relativity extends these concepts to incorporate gravity as the curvature of spacetime itself, rather than a force acting through space. This geometric interpretation provides a unified description of gravitational phenomena, explaining both planetary motion and the behavior of light in gravitational fields.
 
@@ -38,19 +37,21 @@
 = Mathematical Framework
 
 - The spacetime interval in special relativity remains invariant under Lorentz transformations, preserving the fundamental causal structure of spacetime across all inertial reference frames:
-  $ s^2 = c^2 t^2 - x^2 - y^2 - z^2 $
+  $ s^2 = c^2 dot t^2 - x^2 - y^2 - z^2 $
 
 - Lorentz transformations mathematically connect inertial reference frames moving with relative velocity $v$, ensuring the universal constancy of light speed and preserving the form of physical laws:
   $
-    t' & = gamma (t - v x / c^2), quad
-         x' & = gamma (x - v t), quad
+    t' & = gamma dot (t - v dot x / c^2), quad
+         x' & = gamma dot (x - v dot t), quad
               y' & = y, quad
                    z' & = z
   $
   where $gamma = 1 / sqrt(1 - v^2 / c^2)$ is the Lorentz factor, approaching infinity as $v$ approaches $c$.
 
 - General relativity is formulated using the sophisticated mathematics of Riemannian geometry, with the Einstein field equations providing a direct relationship between spacetime curvature and energy-momentum content:
-  $ G_(mu nu) + Lambda g_(mu nu) = (8 pi G) / c^4 T_(mu nu) $
+
+  $ G_(mu nu) + Lambda g_(mu nu) = (8 dot pi dot G) / c^4 T_(mu nu) $
+
   where $G_(mu nu)$ is the Einstein tensor, $Lambda$ is the cosmological constant, and $T_(mu nu)$ is the stress-energy tensor.
 
 - The metric tensor $g_(mu nu)$ completely describes the local geometry of spacetime, determining proper time intervals, spatial distances, and the geodesic paths followed by freely falling particles and light rays.
@@ -58,7 +59,7 @@
 - In the weak field limit, general relativity reduces to Newtonian gravity with small relativistic corrections that successfully explain previously mysterious phenomena such as Mercury's perihelion precession of 43 arcseconds per century.
 
 - The photoelectric effect demonstrates the quantum nature of electromagnetic radiation, with individual photon energies determined by Planck's fundamental relation:
-  $ E = h nu $
+  $ E = h dot nu $
   where $h = 6.626 times 10^(-34)$ J⋅s is Planck's constant and $nu$ is the frequency of the electromagnetic radiation.
 
 - Statistical mechanics provides the theoretical foundation for understanding thermal equilibrium states and the collective behavior of quantum systems, with the Bose-Einstein distribution describing the statistical behavior of particles with integer spin (bosons).
@@ -69,17 +70,14 @@
 
 - Successfully predicted gravitational time dilation, gravitational redshift, and gravitational lensing effects---all subsequently confirmed through precise astronomical observations and laboratory experiments using atomic clocks.
 
-- Established the comprehensive theoretical foundation for modern cosmology, including exact solutions describing expanding universe models (Friedmann-Lemaître-Robertson-Walker metrics) and the formation of black holes and other exotic spacetime geometries.
-
-- Provided the conceptual framework that enabled the later development of quantum field theory and our modern understanding of fundamental particle interactions within curved spacetime.
-
 #{
-  set par(justify: true)
+  set align(center)
+
   grid(
-    columns: (55%, 40%),
-    gutter: 0.7em,
-    align(right + top, qr-code("https://www.ias.edu", width: 4cm)),
-    align(left + horizon, [Institute for \ Advanced Study \ Princeton, NJ]),
+    // Non-equal columns for better visual balance
+    columns: (1.3fr, 1fr),
+    align: (right + horizon, left + horizon),
+    column-gutter: 1em,
+    qr-code(width: 4cm, "https://www.ias.edu"), [Institute for \ Advanced Study \ Princeton, NJ],
   )
 }
-
