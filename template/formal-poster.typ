@@ -1,9 +1,7 @@
-#import "../src/formal-poster.typ": formal-template
-#import "@preview/cades:0.3.0": qr-code
+#import "/src/formal-poster.typ": formal-template
 #import "@preview/physica:0.9.3": *
 
 #show: formal-template.with(
-  paper: "a1",
   lang: "en",
   title: [
     On the Electrodynamics of Moving Bodies \
@@ -18,7 +16,7 @@
   right-column: { include "formal-poster-diagrams.typ" },
   conference: "International Congress of Physics 1955",
   dates: "July 15-20, 1955, Princeton, New Jersey",
-  contacts: [email: `einstein@ias.edu` \ Phone: `+1-609-734-8000`],
+  contacts: [email: `einstein@ias.edu`],
 )
 
 = Introduction
@@ -71,8 +69,11 @@
 - Successfully predicted gravitational time dilation, gravitational redshift, and gravitational lensing effects---all subsequently confirmed through precise astronomical observations and laboratory experiments using atomic clocks.
 
 #{
+  import "@preview/cades:0.3.0": qr-code
+
   set align(center)
 
+  v(1fr)
   grid(
     // Non-equal columns for better visual balance
     columns: (1.3fr, 1fr),
@@ -80,4 +81,5 @@
     column-gutter: 1em,
     qr-code(width: 4cm, "https://www.ias.edu"), [Institute for \ Advanced Study \ Princeton, NJ],
   )
+  v(1fr)
 }

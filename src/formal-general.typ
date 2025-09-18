@@ -1,5 +1,3 @@
-#import "@preview/fontawesome:0.6.0": fa-icon
-
 #let font-size = 10pt
 #let font-family = "New Computer Modern"
 #let accent-color = rgb("004d80")
@@ -12,7 +10,14 @@
   return txt
 }
 
-#let formal-general(frame-width: 5mm, body) = {
+// Function to render an accent text
+#let accent(body) = {
+  set text(fill: accent-color)
+  body
+}
+
+// General style for formal documents
+#let formal-general(frame-thickness: 5mm, frame-outset: 0cm, body) = {
   set par(justify: true)
   set text(
     size: font-size,
@@ -40,15 +45,17 @@
 
   // Page frame
   let frame = rect(
-    width: 100% - frame-width,
-    height: 100% - frame-width,
-    stroke: accent-color + frame-width,
+    width: 100% - frame-thickness,
+    height: 100% - frame-thickness,
+    stroke: accent-color + frame-thickness,
+    outset: -frame-outset,
   )
-  set page(margin: 1.2cm, background: frame)
 
+  set page(margin: 1.2cm, background: frame)
   body
 }
 
+// Function to apply custom syntax
 #let formal-syntax(body) = {
   // Custom syntax
   show ">": "•"

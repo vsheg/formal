@@ -1,4 +1,4 @@
-#import "@preview/lilaq:0.4.0" as lq
+#import "@preview/lilaq:0.5.0" as lq
 #import "@preview/colorful-boxes:1.4.3": outline-colorbox
 
 #let large = it => {
@@ -12,7 +12,7 @@
 
 #show: large
 
-#let plot-size = (width: 27cm, height: 13cm)
+#let plot-size = (width: 100%, height: 17%)
 
 #let boxed(content, title: none) = {
   outline-colorbox(title: title, radius: 2mm)[

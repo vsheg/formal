@@ -1,3 +1,5 @@
+#import "/src/formal-general.typ": accent-color, formal-general, ghost-color
+
 #let formal-template(
   paper: "a1",
   lang: "en",
@@ -7,8 +9,8 @@
   font-size: 16pt,
   font-family: "New Computer Modern",
   margin: 4cm,
-  accent-color: rgb("004d80"),
-  ghost-color: rgb(0, 0, 0, 60%),
+  frame-thickness: 1.5cm,
+  frame-outset: 0cm,
   footer: "Footer",
   conference: "Conference",
   dates: "2024",
@@ -16,23 +18,27 @@
   right-column: none,
   body,
 ) = {
+  // Apply general style
+  show: formal-general.with(
+    frame-thickness: frame-thickness,
+    frame-outset: frame-outset,
+  )
+
   // Paper format
   let font-size-title = font-size * 3.0
-  let font-size-authors = font-size * 1.5
-  let font-size-department = font-size * 1.2
+  let font-size-authors = font-size * 2.0
+  let font-size-department = font-size * 1.5
 
   set text(font: font-family, size: font-size, lang: lang)
 
-  let page-footer = {
+  let footer = {
+    set align(right)
     set text(fill: ghost-color)
-    grid(
-      columns: (2fr, 3fr),
-      gutter: 1em,
-      align(right + top, contacts), align(right + top)[#conference \ #dates],
-    )
+    text(size: font-size-department, conference) + linebreak()
+    text(size: font-size-department, dates)
   }
 
-  set page(paper: paper, margin: margin, footer: page-footer)
+  set page(paper: paper, margin: margin, footer: footer, footer-descent: -1.0em)
 
   // Style
 
@@ -43,18 +49,18 @@
   {
     // Decrease line spacing for main header
     set par(leading: 0.4em)
-
-    // Authors, affiliation, ...
     set align(center)
 
+    // Authors, affiliation, ...
     grid(
       rows: 3,
       row-gutter: 1em,
       text(size: font-size-title, fill: accent-color, weight: "medium", title),
       // Empty line
       none,
-      text(size: font-size-authors, style: "italic", fill: ghost-color, authors),
-      text(size: font-size-department, fill: ghost-color, department),
+      text(size: font-size-authors, authors),
+      text(size: font-size-department, style: "italic", department),
+      text(size: font-size-department, contacts),
     )
   }
 
@@ -89,10 +95,6 @@
   grid(
     columns: (2fr, 3fr),
     gutter: 3em,
-    {
-      body
-      text(fill: ghost-color, footer)
-    },
-    right-column,
+    body, right-column,
   )
 }
