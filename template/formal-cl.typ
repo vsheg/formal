@@ -1,4 +1,4 @@
-#import "../src/formal-general.typ": *
+#import "/src/formal-general.typ": *
 #import "@preview/fontawesome:0.2.0": *
 
 #show: formal-general
