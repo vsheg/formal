@@ -1,4 +1,4 @@
-#import "/src/formal-general.typ": accent-color, formal-general, formal-syntax, ghost, ghost-color
+#import "general.typ": accent-color, formal-general, formal-syntax, ghost, ghost-color
 
 #let formal-letter(
   frame-thickness: 5mm,

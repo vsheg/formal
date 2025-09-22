@@ -1,4 +1,4 @@
-#import "/src/formal-letter.typ": *
+#import "/src/formal.typ": formal-letter
 
 #show: formal-letter
 

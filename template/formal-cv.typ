@@ -1,4 +1,4 @@
-#import "../src/formal-cv.typ": *
+#import "/src/formal.typ": cv-item, formal-cv, keyword-grid, label, small, summary
 
 #show: formal-cv.with(
   name: [Albert Einstein],

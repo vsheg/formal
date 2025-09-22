@@ -1,6 +1,6 @@
-#import "/src/formal-general.typ": accent-color, formal-general, ghost-color
+#import "/src/general.typ": accent-color, formal-general, ghost-color
 
-#let formal-template(
+#let formal-poster(
   paper: "a1",
   lang: "en",
   title: "Title",

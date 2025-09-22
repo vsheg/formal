@@ -1,7 +1,7 @@
-#import "/src/formal-poster.typ": formal-template
+#import "/src/formal.typ": formal-poster
 #import "@preview/physica:0.9.3": *
 
-#show: formal-template.with(
+#show: formal-poster.with(
   lang: "en",
   title: [
     On the Electrodynamics of Moving Bodies \

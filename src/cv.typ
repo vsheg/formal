@@ -1,4 +1,4 @@
-#import "formal-general.typ": *
+#import "general.typ": *
 #import "@preview/fontawesome:0.6.0": fa-icon
 
 
@@ -10,11 +10,11 @@
   location: [San Francisco, CA],
   contacts: [],
   links: [],
-  frame-width: 5mm,
+  frame-thickness: 5mm,
 ) = {
   // Styles
 
-  show: formal-general.with(frame-width: frame-width)
+  show: formal-general.with(frame-thickness: frame-thickness)
   show: formal-syntax
 
   show heading: set block(above: 1.5em, below: 1.2em)
