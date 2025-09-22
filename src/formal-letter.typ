@@ -1,37 +1,17 @@
-#show: template.with(
-  name: [Albert Einstein],
-  prefix: [Prof. Dr.],
-  contacts: (
-    link(
-      "mailto:einstein@ias.edu",
-      ghost(fa-icon("envelope", size: 0.75em)) + h(0.5em) + "einstein@ias.edu",
-    ),
-    link(
-      "tel:+1-609-734-8000",
-      ghost(fa-icon("phone", size: 0.75em)) + h(0.5em) + "+1-609-734-8000",
-    ),
-  ),
-  title: [Theoretical Physicist. Nobel Laureate],
-  location: [Princeton, New Jersey, USA],
-  links: (
-    link(
-      "https://www.ias.edu",
-      ghost(fa-icon("globe", solid: true, size: 0.75em))
-        + h(0.5em)
-        + "Institute for Advanced Study",
-    ),
-    link("https://royalsociety.org/people/albert-einstein-11907", "Royal Society Fellow"),
-    link("https://www.nobelprize.org/prizes/physics/1921/einstein", "Nobel Prize 1921"),
-  ),
-)
+#import "/src/formal-general.typ": accent-color, formal-general, formal-syntax, ghost, ghost-color
 
-#set page(margin: 3cm)
-#set text(hyphenate: true)
-#set par(justify: true)
+#let formal-letter(
+  frame-thickness: 5mm,
+  margin: 3cm,
+  body,
+) = {
+  // Styles
 
-#v(0.6fr)
+  show: formal-general.with(frame-thickness: frame-thickness)
+  show: formal-syntax
+  set page(margin: margin)
+  show heading: set align(center)
 
-#{
-  set align(center)
-  [= Cover Letter]
+  body
 }
+

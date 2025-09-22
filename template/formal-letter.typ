@@ -1,11 +1,7 @@
-#import "/src/formal-general.typ": *
-#import "@preview/fontawesome:0.2.0": *
+#import "/src/formal-letter.typ": *
 
-#show: formal-general
+#show: formal-letter
 
-#set page(margin: 3cm)
-#set text(hyphenate: true)
-#set par(justify: true)
 
 #v(0.6fr)
 
