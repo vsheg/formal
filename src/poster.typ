@@ -6,7 +6,7 @@
   title: "Title",
   authors: "Authors",
   department: "Department",
-  font-size: 16pt,
+  font-size: 18pt,
   font-family: "New Computer Modern",
   margin: 4cm,
   frame-thickness: 1.5cm,
@@ -25,7 +25,7 @@
   )
 
   // Paper format
-  let font-size-title = font-size * 3.0
+  let font-size-title = font-size * 2.5
   let font-size-authors = font-size * 2.0
   let font-size-department = font-size * 1.5
 
@@ -38,11 +38,13 @@
     text(size: font-size-department, dates)
   }
 
-  set page(paper: paper, margin: margin, footer: footer, footer-descent: -1.0em)
+  set page(paper: paper, margin: margin, footer: footer, footer-descent: -frame-thickness / 2)
 
   // Style
-
   set list(marker: text(font: "Menlo", fill: accent-color)[➤])
+
+  // Math
+  set math.equation(numbering: "(1)")
 
   // Header
 
@@ -64,13 +66,10 @@
     )
   }
 
-  // Heading
-
-  let font_size_heading = font-size * 1.5
-
+  // Headings
   show heading.where(level: 1): it => {
     v(1.5em, weak: true)
-    set text(size: font_size_heading, weight: 900, fill: accent-color)
+    set text(size: 1em, weight: 900, fill: accent-color)
     block[
       #smallcaps(it.body)
     ]
@@ -78,18 +77,13 @@
   }
 
   show heading.where(level: 2): it => {
-    v(0.9em, weak: true)
-    text(size: font-size, fill: accent-color, style: "italic", it.body + [.])
+    text(size: 0.9 * font-size, fill: accent-color, it.body + [.])
   }
 
-  v(5em, weak: true)
-
   // Body
-  set par(justify: true)
-  show par: set block(spacing: 0.65em)
+  set par(justify: true, spacing: 0.65em)
 
-  // Math
-  set math.equation(numbering: "(1)")
+  v(2em)
 
   // Poster content
   grid(
