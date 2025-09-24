@@ -24,8 +24,6 @@
   Theoretical physicist with revolutionary contributions to modern physics spanning over 5 decades. Developed the theory of relativity, explained the photoelectric effect, and made fundamental contributions to quantum mechanics and statistical mechanics. Nobel Prize laureate and Fellow of the Royal Society. Dedicated advocate for civil rights, pacifism, and scientific internationalism.
 ]
 
-// #set block(fill: red.transparentize(80%))
-
 == Expertise
 
 #keyword-grid(
