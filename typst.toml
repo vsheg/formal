@@ -4,7 +4,7 @@ version = "0.0.1"
 entrypoint = "src/formal.typ"
 authors = ["Vsevolod Shegolev <https://github.com/vsheg>"]
 license = "MIT"
-description = "A template for formal documents."
+description = "Elegant documents for academic and professional use."
 repository = "https://github.com/vsheg/formal"
 compiler = "0.13.0"
 exclude = ["tests", "docs", "Makefile"]
@@ -14,4 +14,4 @@ keywords = ["cv", "poster", "document", "academic"]
 [template]
 path = "template"
 entrypoint = "main.typ"
-thumbnail = ""
+thumbnail = "docs/formal-cv.png"

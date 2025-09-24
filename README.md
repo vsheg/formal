@@ -1,18 +1,6 @@
 # Formal
 
-A template for formal documents.
-
-This is a template for [Typst](httpss://typst.app) to create formal documents like CVs and letters.
-
-## Usage
-
-You can use this template in the Typst web app by searching for `formal`.
-
-Alternatively, you can use it with the Typst CLI. To use the templates from this repository, you can use the following import statement:
-
-```typst
-#import "src/formal.typ": *
-```
+This is a template for [Typst](httpss://typst.app) to create formal documents. Currently, it includes templates for a CV, a letter, and a poster.
 
 | CV | Letter | Poster |
 |---|---|---|
