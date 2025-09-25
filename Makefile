@@ -20,4 +20,7 @@ clean:
 check:
 	typst-package-check check
 
-.PHONY: all docs clean check
+build:
+	zip -r formal.zip src/ template/ docs/formal-cv.png LICENSE README.md typst.toml
+
+.PHONY: all docs clean check build
