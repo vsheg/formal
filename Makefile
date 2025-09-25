@@ -17,4 +17,7 @@ docs/%.png: template/%.typ
 clean:
 	rm -f docs/*.png
 
-.PHONY: all docs clean
+check:
+	typst-package-check check
+
+.PHONY: all docs clean check
