@@ -1,4 +1,4 @@
-#import "/src/formal.typ": formal-poster
+#import "@preview/formal:0.1.0": formal-poster
 #import "@preview/physica:0.9.3": *
 
 #show: formal-poster.with(

@@ -1,6 +1,6 @@
 [package]
 name = "formal"
-version = "0.0.1"
+version = "0.1.0"
 entrypoint = "src/formal.typ"
 authors = ["Vsevolod Shegolev <https://github.com/vsheg>"]
 license = "MIT"
