@@ -21,6 +21,6 @@ check:
 	typst-package-check check
 
 build:
-	zip -r formal.zip src/ template/ docs/formal-cv.png LICENSE README.md typst.toml
+	zip -r formal.zip src/ template/ docs/ LICENSE README.md typst.toml
 
 .PHONY: all docs clean check build
