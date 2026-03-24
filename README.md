@@ -7,7 +7,7 @@ A template collection for [Typst](https://typst.app) to create professional and 
 Install the package using Typst's package registry:
 
 ```typst
-#import "@preview/formal:0.1.0": formal-cv, formal-letter, formal-poster
+#import "@preview/formal:0.2.0": formal-cv, formal-letter, formal-poster
 ```
 
 ## Usage
