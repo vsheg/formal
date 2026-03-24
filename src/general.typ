@@ -1,3 +1,5 @@
+#import "utils.typ": star
+
 #let font-size = 10pt
 #let font-family = "New Computer Modern"
 #let accent-color = rgb("004d80")
@@ -36,7 +38,7 @@
 
   set list(
     marker: (
-      text(font: "Menlo", size: 1.3em, baseline: -0.17em, "✴"),
+      star(),
       text(size: 0.5em, baseline: +0.35em, "➤"),
     ),
     spacing: 0.65em,
