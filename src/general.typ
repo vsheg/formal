@@ -1,6 +1,7 @@
 #import "utils.typ": detail-stack, draft-pattern, star
 
 #let font-size = 10pt
+#let smaller-font-size = font-size * 0.85
 #let font-family = "New Computer Modern"
 #let accent-color = rgb("004d80")
 #let ghost-color = rgb(0, 0, 0, 50%)
@@ -19,7 +20,7 @@
 }
 
 // General style for formal documents
-#let formal-general(frame-thickness: 5mm, frame-outset: 0cm, body) = {
+#let formal-general(font-size: font-size, frame-thickness: 5mm, frame-outset: 0cm, body) = {
   set par(justify: true)
   set text(
     size: font-size,
@@ -33,6 +34,8 @@
   }
 
   show math.equation: set text(font: font-family)
+  set math.cancel(stroke: black.transparentize(50%))
+
   show raw: set text(size: 0.95em, font: "Menlo")
   show link: set text(font: "Menlo", size: 0.8em)
 
