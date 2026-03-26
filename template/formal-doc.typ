@@ -3,7 +3,6 @@
 #show: formal-doc.with(
   authors: [J. Willard Gibbs],
   date: [October 1898],
-  font-size: 9pt,
 )
 
 = On the Equilibrium of Heterogeneous Substances
@@ -14,9 +13,7 @@ bodies. Thermodynamic equilibrium obtains when no spontaneous change can
 diminish the energy of the system at constant entropy, or equivalently, when no change
 can increase the entropy at constant energy @gibbs1878.
 
-#margin[
-  Fundamental criterion
-][
+#margin(title: [Fundamental criterion])[
   A system attains equilibrium when its thermodynamic potential reaches a minimum
   consistent with the imposed constraints. The appropriate potential depends on which
   variables --- temperature, pressure, or volume --- are held fixed by the
@@ -48,9 +45,7 @@ the necessary and sufficient condition for material equilibrium @clausius1865. T
 condition is not merely formal: it determines solubility limits, vapor composition, and
 the direction of every diffusive process.
 
-#margin[
-  Reading equation @fundamental
-][
+#margin(title: [Reading equation @fundamental])[
   Each term pairs an intensive quantity (temperature, pressure, chemical potential)
   with the differential of its conjugate extensive variable (entropy, volume, mass).
   The equation thus encodes every reversible exchange of energy the system can undergo.
@@ -72,7 +67,8 @@ energy $G = U - T S + p V$ is the natural quantity @gibbs1878.
 
 #table(
   columns: 4,
-  [Potential], [Natural variables], [Eq. condition], [Typical context],
+
+  table.header[Potential][Natural variables][Eq. condition][Typical context],
 
   [Internal energy $U$],
   [$S, V, m_j$],
