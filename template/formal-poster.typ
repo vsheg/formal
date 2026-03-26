@@ -71,7 +71,7 @@ General relativity extends these concepts to incorporate gravity as the curvatur
 - Successfully predicted gravitational time dilation, gravitational redshift, and gravitational lensing effects---all subsequently confirmed through precise astronomical observations and laboratory experiments using atomic clocks.
 
 #{
-  import "@preview/rustycure:0.1.0": qr-code
+  import "@preview/rustycure:0.2.0": qr-code
 
   set align(center)
 

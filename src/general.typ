@@ -1,4 +1,4 @@
-#import "utils.typ": star
+#import "utils.typ": detail-stack, draft-pattern, star
 
 #let font-size = 10pt
 #let font-family = "New Computer Modern"

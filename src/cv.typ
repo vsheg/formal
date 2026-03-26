@@ -31,13 +31,11 @@
     for contact in contacts {
       contact + linebreak()
     },
-    ghost(italic: false, prefix)
-      + [ ]
-      + text(size: 1.2em, weight: "bold", name)
-      + linebreak()
-      + emph(title)
-      + linebreak()
-      + location,
+    detail-stack(
+      ghost(italic: false, prefix) + [ ] + text(size: 1.2em, weight: "bold", name),
+      emph(title),
+      location,
+    ),
     for link in links {
       link + linebreak()
     },

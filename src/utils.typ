@@ -31,3 +31,19 @@
     ),
   )
 }
+
+
+#let draft-pattern = {
+  let element = text(size: 2em, fill: gray.opacify(-90%))[*DRAFT*]
+  let pattern = tiling(size: (90pt, 40pt), element)
+  rotate(-25deg, rect(width: 150%, height: 150%, fill: pattern))
+}
+
+#let detail-stack(..items) = {
+  let entries = items.pos().filter(item => item != none)
+  if entries.len() == 0 {
+    return none
+  }
+
+  entries.join(linebreak())
+}
