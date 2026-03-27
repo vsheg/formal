@@ -1,5 +1,5 @@
 #let star(
-  size: 0.70em,
+  size: 0.65em,
   arms: 8,
   tip-radius: 1.2,
   waist-radius: 0.30,

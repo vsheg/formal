@@ -1,6 +1,17 @@
 #import "general.typ": *
 #import "@preview/fontawesome:0.6.0": fa-icon
 
+#let style-lists(body) = {
+  set list(
+    marker: (
+      star(),
+      arrowhead(size: 0.7em, baseline: +0.2em, fill: accent-color),
+    ),
+    tight: true,
+    body-indent: 0.4em,
+  )
+  body
+}
 
 #let formal-cv(
   body,
@@ -17,6 +28,7 @@
   show: formal-general.with(frame-thickness: frame-thickness)
   show: formal-syntax
 
+  show: style-lists
   show heading: set block(above: 1.5em, below: 1.2em)
 
 
