@@ -5,7 +5,7 @@
   set list(
     marker: (
       star(),
-      arrowhead(size: 0.7em, baseline: +0.2em, fill: accent-color),
+      arrowhead(),
     ),
     tight: true,
     body-indent: 0.4em,

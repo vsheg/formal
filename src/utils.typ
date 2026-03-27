@@ -1,3 +1,5 @@
+#import "defs.typ": accent-color
+
 #let star(
   size: 0.65em,
   arms: 8,
@@ -33,12 +35,10 @@
 }
 
 #let arrowhead(
-  size: 1em,
-  baseline: 0em,
-  fill: luma(0%),
-  font: "Menlo",
+  size: 0.6em,
+  baseline: +0.3em,
+  fill: accent-color,
 ) = text(
-  font: font,
   size: size,
   baseline: baseline,
   fill: fill,

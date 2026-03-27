@@ -35,7 +35,6 @@
     lang: lang,
     costs: (hyphenation: 10%),
   )
-  show raw: set text(font: "Menlo", size: 0.9em)
   body
 }
 

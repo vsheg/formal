@@ -1,10 +1,5 @@
 #import "utils.typ": arrowhead, detail-stack, draft-pattern, star
-
-#let font-size = 10pt
-#let smaller-font-size = 0.9em
-#let font-family = "New Computer Modern"
-#let accent-color = rgb("004d80")
-#let ghost-color = rgb(0, 0, 0, 50%)
+#import "defs.typ": *
 
 // Function to render a ghost text
 #let ghost(body, italic: false) = {
@@ -36,12 +31,12 @@
   show math.equation: set text(font: font-family)
   set math.cancel(stroke: black.transparentize(50%))
 
-  show raw: set text(size: 0.95em, font: "Menlo")
-  show link: set text(font: "Menlo", size: 0.8em)
+  show raw: set text(size: 0.9em)
+  show link: set text(size: 0.8em)
 
   set list(
     marker: (
-      arrowhead(size: 0.7em, baseline: +0.2em, fill: accent-color),
+      arrowhead(),
     ),
     tight: true,
     body-indent: 0.3em,
@@ -83,4 +78,3 @@
 
   body
 }
-
