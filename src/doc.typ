@@ -1,6 +1,6 @@
 #import "general.typ": (
   accent-color, detail-stack, draft-pattern, font-size, formal-general, formal-syntax, ghost,
-  ghost-color, smaller-font-size, star,
+  ghost-color, smaller-font-size,
 )
 #import "@preview/drafting:0.2.2": margin-note, set-page-properties
 
@@ -32,11 +32,9 @@
 
 #let style-text(lang: "en", body) = {
   set text(
-    hyphenate: true,
     lang: lang,
     costs: (hyphenation: 10%),
   )
-  set par(justify: true)
   show raw: set text(font: "Menlo", size: 0.9em)
   body
 }
@@ -77,14 +75,15 @@
   body
 }
 
-#let inline-heading(content, delimiter: true) = text(
+#let inline-heading(delimiter: true, body) = text(
   size: smaller-font-size,
   weight: "bold",
   fill: accent-color,
-  strong(content) + if delimiter { ". " } else { none },
+  strong(body) + if delimiter { ". " } else { none },
 )
 
 #let style-headings(font-size: font-size, body) = {
+  // TODO: This function is redundant, we should move this logic to formal-general
   show heading: set text(fill: accent-color, size: font-size)
   set heading(numbering: "1")
 
