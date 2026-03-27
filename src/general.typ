@@ -1,4 +1,4 @@
-#import "utils.typ": detail-stack, draft-pattern, star
+#import "utils.typ": arrowhead, detail-stack, draft-pattern, star
 
 #let font-size = 10pt
 #let smaller-font-size = 0.9em
@@ -41,11 +41,10 @@
 
   set list(
     marker: (
-      star(),
-      text(size: 0.5em, baseline: +0.35em, "➤"),
+      arrowhead(size: 0.7em, baseline: +0.2em, fill: accent-color),
     ),
-    spacing: 0.65em,
     tight: true,
+    body-indent: 0.3em,
   )
 
   // Page frame

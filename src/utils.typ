@@ -32,6 +32,19 @@
   )
 }
 
+#let arrowhead(
+  size: 1em,
+  baseline: 0em,
+  fill: luma(0%),
+  font: "Menlo",
+) = text(
+  font: font,
+  size: size,
+  baseline: baseline,
+  fill: fill,
+  "➤",
+)
+
 
 #let draft-pattern = {
   let element = text(size: 2em, fill: gray.opacify(-90%))[*DRAFT*]

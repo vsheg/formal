@@ -14,10 +14,11 @@ diminish the energy of the system at constant entropy, or equivalently, when no 
 can increase the entropy at constant energy @gibbs1878.
 
 #margin(title: [Fundamental criterion])[
-  A system attains equilibrium when its thermodynamic potential reaches a minimum
-  consistent with the imposed constraints. The appropriate potential depends on which
-  variables --- temperature, pressure, or volume --- are held fixed by the
-  surroundings.
+  - A system attains equilibrium when its thermodynamic potential reaches a
+    minimum consistent with the imposed constraints.
+  - The appropriate potential depends on which variables the surroundings hold
+    fixed.
+  - In practice, those constraints are usually temperature, pressure, or volume.
 ]
 
 == The fundamental equation

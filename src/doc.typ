@@ -59,21 +59,6 @@
   body
 }
 
-#let style-lists(body) = {
-  set list(
-    marker: (
-      text(
-        font: "Menlo",
-        size: 1.5em,
-        baseline: -0.2em,
-        "✴", // TODO: use a proper icon here
-        fill: accent-color,
-      ),
-      text(size: 0.6em, baseline: +0.2em, "➤", fill: ghost-color),
-    ),
-  )
-  body
-}
 
 #let inline-heading(delimiter: true, body) = text(
   size: smaller-font-size,
@@ -198,7 +183,6 @@
     margin-ratio: margin-ratio,
   )
   show: style-math
-  show: style-lists
   show: style-headings.with(font-size: font-size)
   show: style-tables
 

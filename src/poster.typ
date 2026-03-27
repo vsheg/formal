@@ -1,4 +1,4 @@
-#import "/src/general.typ": accent-color, formal-general, ghost-color
+#import "/src/general.typ": accent-color, arrowhead, formal-general, ghost-color
 
 #let formal-poster(
   paper: "a1",
@@ -39,9 +39,6 @@
   }
 
   set page(paper: paper, margin: margin, footer: footer, footer-descent: -frame-thickness / 2)
-
-  // Style
-  set list(marker: text(font: "Menlo", fill: accent-color)[➤])
 
   // Math
   set math.equation(numbering: "(1)")
