@@ -1,4 +1,4 @@
-#import "defs.typ": accent-color
+#import "defs.typ": accent-color, smaller-font-size
 
 #let star(
   size: 0.65em,
@@ -60,3 +60,10 @@
 
   entries.join(linebreak())
 }
+
+#let inline-heading(size: smaller-font-size, delimiter: true, body) = text(
+  size: size,
+  weight: "bold",
+  fill: accent-color,
+  strong(body) + if delimiter { " " } else { none },
+)

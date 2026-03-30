@@ -1,113 +1,126 @@
-#import "@preview/formal:0.2.0": formal-doc, margin, note
+#import "@preview/formal:0.2.0": accent-color, formal-doc, margin, note
 
 #show: formal-doc.with(
   authors: [J. Willard Gibbs],
   date: [October 1898],
 )
 
-= On the Equilibrium of Heterogeneous Substances
+= Lecture: Equilibrium of Heterogeneous Substances
 
-The conditions which determine the equilibrium of a body are of two kinds: those
-relating to its internal state, and those which concern its relations to external
-bodies. Thermodynamic equilibrium obtains when no spontaneous change can
-diminish the energy of the system at constant entropy, or equivalently, when no change
-can increase the entropy at constant energy @gibbs1878.
+A system is in thermodynamic equilibrium when no spontaneous change can occur: nothing
+inside wants to rearrange, and nothing outside is driving it.
 
-#margin(title: [Fundamental criterion])[
-  - A system attains equilibrium when its thermodynamic potential reaches a
-    minimum consistent with the imposed constraints.
-  - The appropriate potential depends on which variables the surroundings hold
-    fixed.
-  - In practice, those constraints are usually temperature, pressure, or volume.
+#margin(title: [Key idea])[
+  Equilibrium means the appropriate potential $A$ is at a minimum under the imposed
+  constraints ($A = U$, $F$, or $G$ depending on what is fixed). Two things to keep
+  in mind:
+  - The minimum must be _global_, not just a local stationary point.
+  - Different subsystems of the same body share the same $T$, $p$, and $mu_j$ at
+    equilibrium.
 ]
 
-== The fundamental equation
-For a homogeneous body of variable composition, the energy $U$ is expressed as a
-function of entropy $S$, volume $V$, and the masses $m_1, m_2, dots, m_n$ of the
-independently variable components. The total differential takes the form of @fundamental,
-where $T$ is the absolute temperature, $p$ the pressure, and $mu_j$ the chemical
-potential of the $j$-th component.
+== Fundamental equation
+
+=== Total differential
+A body with variable composition has energy $U = U(S, V, m_1, dots, m_n)$. Any
+small reversible change satisfies
 
 $
   dif U = T dif S - p dif V + sum_(j=1)^n mu_j dif m_j
 $ <fundamental>
 
-#note(title: [Example])[
-  Consider a vessel containing water and steam in contact. At equilibrium the
-  temperature and pressure are uniform throughout, and the chemical potential of
-  water is equal in both phases. Any transfer of mass between phases leaves the total
-  energy unchanged to first order, which is precisely the condition @fundamental
-  encodes.
+where $T$ is temperature, $p$ pressure, and $mu_j$ the chemical potential of component
+$j$. Each term pairs an intensive variable with the differential of its conjugate
+extensive variable.
+
+#note(title: [Water and steam])[
+  Liquid water and steam in a sealed vessel. At equilibrium $T$, $p$, and $mu$ are
+  equal in both phases. Transferring a small mass from liquid to vapor leaves the total
+  energy unchanged to first order --- that is exactly what @fundamental encodes.
 ]
 
-The quantity $mu_j$ governs the tendency of the $j$-th component to pass from one
-phase to another. Equality of chemical potentials across coexisting phases is therefore
-the necessary and sufficient condition for material equilibrium @clausius1865. That
-condition is not merely formal: it determines solubility limits, vapor composition, and
-the direction of every diffusive process.
-
-#margin(title: [Reading equation @fundamental])[
-  Each term pairs an intensive quantity (temperature, pressure, chemical potential)
-  with the differential of its conjugate extensive variable (entropy, volume, mass).
-  The equation thus encodes every reversible exchange of energy the system can undergo.
+#margin(title: [Reading @fundamental])[
+  Each term is intensive $times$ $dif$(extensive): $T dif S$, $p dif V$,
+  $mu_j dif m_j$. Think of the intensive quantity as a "force" and the extensive
+  differential as the conjugate "displacement". This structure recurs throughout
+  thermodynamics.
 ]
+
+=== Chemical potential
+$mu_j$ measures the tendency of component $j$ to move between phases. If $mu_j$ is
+higher in phase A than in phase B, matter flows from A to B until the potentials
+equalize @clausius1865. This single condition governs solubility limits, vapor
+composition, and the direction of every diffusive process.
 
 == Thermodynamic potentials
-When temperature rather than entropy is the controlled variable, it is advantageous to
-pass from the energy $U$ to the free energy $F = U - T S$, whose minimum at constant
-$T$ and $V$ characterizes equilibrium. For processes at constant $T$ and $p$, the Gibbs
-energy $G = U - T S + p V$ is the natural quantity @gibbs1878.
 
-#note(title: [Practical observation])[
-  The choice of potential is dictated by the experimental arrangement. In a sealed
-  calorimeter one controls volume; in an open reaction vessel one controls pressure.
-  Selecting the wrong potential obscures the equilibrium condition rather than
-  clarifying it. When in doubt, identify which variables the surroundings impose before
-  writing any equation.
-]
+#margin({
+  import "@preview/lilaq:0.5.0" as lq
+  let a(x) = calc.pow(x - 0.6, 2)
+  let xs = lq.linspace(0, 1, num: 100)
+  let ys = xs.map(a)
+  lq.diagram(
+    width: 100%,
+    height: 3cm,
+    xlim: (0, 1),
+    ylim: (-0.1, 0.4),
+    fill: none,
+    grid: none,
+    xlabel: [Extent of reaction, $xi$],
+    ylabel: [Potential $A$],
+    xaxis: (ticks: ((0, [0]),), subticks: none, mirror: false),
+    yaxis: (ticks: none, subticks: none, mirror: false),
+
+    lq.plot(xs, ys, stroke: accent-color, mark: none),
+    lq.place(0.6, -0.05, [$Delta A = 0$]),
+  )
+})
+
+=== Legendre transforms
+In practice we control temperature, not entropy. We therefore work with transformed
+potentials. Write $A$ for the potential appropriate to the given constraints.
+At fixed $T, V$: $A = F = U - T S$. At fixed $T, p$: $A = G = U - T S + p V$.
+Equilibrium is always a minimum of $A$.
 
 #table(
   columns: 4,
 
   table.header[Potential][Natural variables][Eq. condition][Typical context],
 
-  [Internal energy $U$],
-  [$S, V, m_j$],
-  [Minimum at constant $S$ and $V$],
-  [Isolated or adiabatic systems],
+  [Internal energy $U$], [$S, V, m_j$], [Minimum at constant $S, V$], [Isolated systems],
 
-  [Helmholtz free energy $F$],
-  [$T, V, m_j$],
-  [Minimum at constant $T$ and $V$],
-  [Closed vessels at fixed temperature],
+  [Helmholtz $F$], [$T, V, m_j$], [Minimum at constant $T, V$], [Sealed vessels],
 
-  [Gibbs energy $G$],
-  [$T, p, m_j$],
-  [Minimum at constant $T$ and $p$],
-  [Open-atmosphere reactions and phase diagrams],
+  [Gibbs $G$], [$T, p, m_j$], [Minimum at constant $T, p$], [Open-atmosphere],
 )
 
-== Conditions for stable equilibrium
-It is not sufficient that the energy be stationary; it must be a minimum. The second
-variation of $U$ with respect to all admissible displacements must be positive, which
-requires that the heat capacity at constant volume be positive, that the isothermal
-compressibility be positive, and that analogous inequalities hold for every chemical
-degree of freedom @maxwell1871.
+#margin(title: [Common mistake])[
+  The default choice is $G$, but that is only correct when $p$ is fixed. A sealed
+  rigid vessel fixes $V$ --- use $F$. Choosing the wrong potential yields equilibrium
+  conditions expressed in the wrong variables, which complicates rather than clarifies.
+]
 
-A system that satisfies only the first-order conditions may rest in unstable
-equilibrium --- a state from which an infinitesimal fluctuation precipitates a finite
-change. The spinodal curve, within which these stability conditions fail, marks the
-boundary of the region where a homogeneous phase cannot persist.
+=== Stability conditions
+A stationary point of $A$ is necessary but not sufficient --- we need a minimum. This
+requires positive heat capacity at constant volume, positive isothermal compressibility,
+and analogous inequalities for each chemical degree of freedom @maxwell1871. Where
+these fail lies the _spinodal curve_: inside it a single homogeneous phase cannot
+persist.
 
-The same reasoning extends to systems of many components and many phases. The phase
-rule, which fixes the number of independent intensive variables as $f = n - r + 2$
-where $n$ is the number of components and $r$ the number of coexisting phases, is a
-direct consequence of the equilibrium conditions: it counts the degrees of freedom that
-remain after all equalities of temperature, pressure, and chemical potential have been
-imposed.
+== Phase rule
 
-#bibliography(
-  title: [References],
-  style: "apa",
-  "refs.bib",
+=== Degrees of freedom
+For $n$ components and $r$ coexisting phases the phase rule is $f = n - r + 2$. It
+counts the independent intensive variables that remain after imposing equal $T$, $p$,
+and $mu_j$ across every phase. The rule assumes only $p V$ work and that every
+component is present in every phase; additional effects require extra constraints.
+
+=== One-component systems
+Pure water has $n = 1$. One phase gives $f = 2$; two phases in coexistence give $f = 1$,
+so fixing temperature determines the boiling pressure; at the triple point $f = 0$ and
+no variable is free.
+
+#margin(
+  v(-2cm),
+  bibliography(title: none, "refs.bib"),
 )
