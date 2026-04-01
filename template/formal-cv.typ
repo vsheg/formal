@@ -58,7 +58,7 @@
   ),
 )
 
-= Experience
+== Experience
 
 - #cv-item(
     title: [Professor],
@@ -120,7 +120,7 @@
   - First academic appointment while continuing work at Swiss Patent Office.
   - Published papers on quantum theory of radiation and specific heats.
 
-= Education
+== Education
 
 - #cv-item(
     title: [Physics],
