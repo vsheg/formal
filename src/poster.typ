@@ -138,10 +138,6 @@
     frame-thickness: frame-thickness,
   )
 
-  // Math
-  set math.equation(numbering: "(1)")
-
-
   // Body
   set par(justify: true, spacing: 0.65em)
 

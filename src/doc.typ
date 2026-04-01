@@ -38,26 +38,6 @@
   body
 }
 
-#let style-math(body) = {
-  set math.equation(numbering: "(1)")
-  show ref: it => {
-    let eq = math.equation
-    let element = it.element
-
-    if element != none and element.func() == eq {
-      link(element.location(), numbering(
-        element.numbering,
-        ..counter(eq).at(element.location()),
-      ))
-    } else {
-      it
-    }
-  }
-
-  show math.equation.where(block: true): set block(spacing: 0.65em)
-  body
-}
-
 #let style-tables(body) = {
   show table: set text(size: smaller-font-size)
 
@@ -162,7 +142,6 @@
     margin-size: margin-size,
     margin-ratio: margin-ratio,
   )
-  show: style-math
   show: style-tables
 
   header(

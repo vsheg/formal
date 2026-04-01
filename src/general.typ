@@ -41,6 +41,29 @@
   body
 }
 
+#let style-math(equation-numbering: "(1)", body) = {
+  set math.equation(numbering: equation-numbering)
+  show ref: it => {
+    let eq = math.equation
+    let element = it.element
+
+    if element != none and element.func() == eq {
+      link(element.location(), numbering(
+        element.numbering,
+        ..counter(eq).at(element.location()),
+      ))
+    } else {
+      it
+    }
+  }
+
+  show math.equation.where(block: true): set block(spacing: 0.65em)
+  show math.equation: set text(font: font-family)
+  set math.cancel(stroke: black.transparentize(50%))
+
+  body
+}
+
 // General style for formal documents
 #let formal-general(font-size: font-size, frame-thickness: 5mm, frame-outset: 0cm, body) = {
   set par(justify: true)
@@ -51,9 +74,7 @@
   )
 
   show: style-headings.with(font-size: font-size)
-
-  show math.equation: set text(font: font-family)
-  set math.cancel(stroke: black.transparentize(50%))
+  show: style-math
 
   show raw: set text(size: 0.9em)
   show link: set text(size: 0.8em)
