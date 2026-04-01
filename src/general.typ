@@ -50,7 +50,7 @@
     hyphenate: true,
   )
 
-  show: style-headings
+  show: style-headings.with(font-size: font-size)
 
   show math.equation: set text(font: font-family)
   set math.cancel(stroke: black.transparentize(50%))

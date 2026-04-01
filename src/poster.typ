@@ -1,6 +1,23 @@
 #import "/src/general.typ": accent-color, arrowhead, formal-general, ghost-color
 
-#let style-headings(body, font-size: 18pt) = {
+#let style-page(
+  paper: "a1",
+  lang: "en",
+  font-size: 18pt,
+  font-family: "New Computer Modern",
+  margin: 4cm,
+  frame-thickness: 1.5cm,
+  footer: none,
+  body,
+) = {
+  set text(font: font-family, size: font-size, lang: lang)
+  set page(
+    paper: paper,
+    margin: margin,
+    footer: footer,
+    footer-descent: -frame-thickness / 2,
+  )
+
   body
 }
 
@@ -67,9 +84,6 @@
   )
 }
 
-#let header = poster-header
-#let footer = poster-footer
-
 #let formal-poster(
   paper: "a1",
   lang: "en",
@@ -95,27 +109,8 @@
     font-size: font-size,
   )
 
-  // Paper format
-  set text(font: font-family, size: font-size, lang: lang)
-
-  set page(
-    paper: paper,
-    margin: margin,
-    footer: poster-footer(
-      body: footer,
-      conference: conference,
-      dates: dates,
-      font-size: font-size,
-    ),
-    footer-descent: -frame-thickness / 2,
-  )
-
-  // Math
-  set math.equation(numbering: "(1)")
-
-  // Header
-
-  poster-header(
+  // Prepare header content
+  let header = poster-header(
     title: title,
     authors: authors,
     department: department,
@@ -123,10 +118,34 @@
     font-size: font-size,
   )
 
-  show: style-headings.with(font-size: font-size)
+  // Prepare footer content
+  let footer = poster-footer(
+    body: footer,
+    conference: conference,
+    dates: dates,
+    font-size: font-size,
+  )
+
+  // Start building the page
+
+  show: style-page.with(
+    paper: paper,
+    lang: lang,
+    font-size: font-size,
+    font-family: font-family,
+    margin: margin,
+    footer: footer,
+    frame-thickness: frame-thickness,
+  )
+
+  // Math
+  set math.equation(numbering: "(1)")
+
 
   // Body
   set par(justify: true, spacing: 0.65em)
+
+  header
 
   v(2em)
 
