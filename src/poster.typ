@@ -3,8 +3,8 @@
 #let style-page(
   paper: "a1",
   lang: "en",
-  font-size: 18pt,
-  font-family: "New Computer Modern",
+  font-size: none,
+  font-family: none,
   margin: 4cm,
   frame-thickness: 1.5cm,
   footer: none,
@@ -26,7 +26,7 @@
   authors: "Authors",
   department: "Department",
   contacts: none,
-  font-size: 18pt,
+  font-size: none,
 ) = {
   let font-size-title = font-size * 2.5
   let font-size-authors = font-size * 2.0
@@ -51,7 +51,7 @@
   body: none,
   conference: none,
   dates: none,
-  font-size: 18pt,
+  font-size: none,
 ) = {
   let font-size-metadata = font-size * 1.5
   let metadata = {
