@@ -1,4 +1,4 @@
-#import "utils.typ": arrowhead, detail-stack, draft-pattern, star
+#import "utils.typ": arrowhead, detail-stack, draft-pattern, inline-heading, star
 #import "defs.typ": *
 
 // Function to render a ghost text
@@ -14,6 +14,33 @@
   body
 }
 
+#let style-headings(font-size: font-size, body) = {
+  show heading: set text(fill: accent-color, size: font-size, weight: "bold")
+
+  show heading.where(level: 1): it => {
+    set text(size: large-font-size)
+    set block(below: 2em)
+    smallcaps(it)
+  }
+
+  show heading.where(level: 2): it => {
+    set text(size: font-size)
+    {
+      set block(above: 1.5em)
+      it
+      v(-0.8em)
+    }
+    line(length: 100%, stroke: 0.25pt + accent-color.transparentize(70%))
+    v(0.3em)
+  }
+
+  show heading.where(level: 3): it => {
+    inline-heading(it.body)
+  }
+
+  body
+}
+
 // General style for formal documents
 #let formal-general(font-size: font-size, frame-thickness: 5mm, frame-outset: 0cm, body) = {
   set par(justify: true)
@@ -23,10 +50,7 @@
     hyphenate: true,
   )
 
-  show heading: it => {
-    set text(fill: accent-color, size: font-size, weight: 900)
-    block(strong(smallcaps(it.body)))
-  }
+  show: style-headings
 
   show math.equation: set text(font: font-family)
   set math.cancel(stroke: black.transparentize(50%))

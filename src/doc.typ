@@ -1,6 +1,6 @@
 #import "general.typ": (
   accent-color, detail-stack, draft-pattern, font-size, formal-general, formal-syntax, ghost,
-  ghost-color, smaller-font-size,
+  ghost-color, inline-heading, smaller-font-size,
 )
 #import "@preview/drafting:0.2.2": margin-note, set-page-properties
 
@@ -55,25 +55,6 @@
   }
 
   show math.equation.where(block: true): set block(spacing: 0.65em)
-  body
-}
-
-
-#let inline-heading(delimiter: true, body) = text(
-  size: smaller-font-size,
-  weight: "bold",
-  fill: accent-color,
-  strong(body) + if delimiter { ". " } else { none },
-)
-
-#let style-headings(font-size: font-size, body) = {
-  // TODO: This function is redundant, we should move this logic to formal-general
-  show heading: set text(fill: accent-color, size: font-size)
-  set heading(numbering: "1")
-
-  show heading.where(level: 2): it => {
-    inline-heading(it.body)
-  }
   body
 }
 
@@ -182,7 +163,6 @@
     margin-ratio: margin-ratio,
   )
   show: style-math
-  show: style-headings.with(font-size: font-size)
   show: style-tables
 
   header(
