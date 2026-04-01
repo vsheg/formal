@@ -19,24 +19,24 @@
   contacts: [email: `einstein@ias.edu`],
 )
 
-= Introduction
+== Introduction
 
-== Historical Context
+=== Historical Context
 The nature of space, time, and gravity has puzzled physicists since Newton's era. Classical mechanics and electromagnetism appeared fundamentally incompatible, with Maxwell's equations suggesting light propagation at a fixed speed while Newtonian mechanics allowed arbitrary relative velocities, requiring a revolutionary revision of our understanding of the physical universe.
 
-== Special Relativity
+=== Special Relativity
 Special relativity, developed in 1905, established that space and time are unified into a four-dimensional spacetime continuum, with the speed of light $c$ as a universal constant defining the causal structure of the universe. This revolutionized our understanding of simultaneity, length contraction, and time dilation, fundamentally altering concepts of absolute space and time.
 
 #align(center, [$ E = m dot c^2 $])
 
-== General Relativity
+=== General Relativity
 General relativity extends these concepts to incorporate gravity as the curvature of spacetime itself, rather than a force acting through space. This geometric interpretation provides a unified description of gravitational phenomena, explaining both planetary motion and the behavior of light in gravitational fields.
 
 - Experimental verification of relativistic predictions was crucial for the scientific acceptance of the theory
 - The famous 1919 solar eclipse expedition led by Arthur Eddington confirmed gravitational light bending
 - This provided the first direct observational evidence for general relativity
 
-= Mathematical Framework
+== Mathematical Framework
 
 - The spacetime interval in special relativity remains invariant under Lorentz transformations, preserving the fundamental causal structure of spacetime across all inertial reference frames:
   $ s^2 = c^2 dot t^2 - x^2 - y^2 - z^2 $
@@ -64,7 +64,7 @@ General relativity extends these concepts to incorporate gravity as the curvatur
   $ E = h dot nu $
   where $h = 6.626 times 10^(-34)$ J⋅s is Planck's constant and $nu$ is the frequency of the electromagnetic radiation.
 
-= Results and Implications
+== Results and Implications
 
 - Derived the profound equivalence of mass and energy, fundamentally transforming our understanding of matter and energy conservation in all physical processes, with applications ranging from nuclear physics to stellar evolution.
 
