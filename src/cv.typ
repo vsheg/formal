@@ -1,6 +1,11 @@
 #import "general.typ": *
 #import "@preview/fontawesome:0.6.0": fa-icon
 
+#let style-headings(body) = {
+  show heading: set block(above: 1em, below: 0.30em)
+  body
+}
+
 #let style-lists(body) = {
   set list(
     marker: (
@@ -23,14 +28,13 @@
   links: [],
   frame-thickness: 5mm,
 ) = {
-  // Styles
-
+  // Apply shared styles
   show: formal-general.with(frame-thickness: frame-thickness)
   show: formal-syntax
 
+  // Apply overrides
+  show: style-headings
   show: style-lists
-  show heading: set block(above: 1.5em, below: 1.2em)
-
 
   // Contact info
   if location != none {
@@ -56,54 +60,38 @@
   body
 }
 
-// Grid of keywords, e.g. to represent technical skills in a compact way
+// Grouped keyword list, e.g. to represent technical skills in a compact way
 #let keyword-grid(n-rows: 4, row-gutter: 0.5em, column-gutter: 1em, columns: auto, ..skills) = {
-  // Keyword group header representing 1st level item in a list
-  let skills = skills.named()
-  let n-groups = skills.len()
-  let group-title(name) = list.item(
-    name
-      + h(0.5em)
-      + box(
-        width: 1fr,
-        line(length: 100%, stroke: (dash: "loosely-dotted")),
-        baseline: -0.3em,
-      ),
+  let skill-groups = skills.named()
+  let n-groups = skill-groups.len()
+
+  // Function to render a single keyword column with a title
+  let keyword-group(title, values) = list(
+    list.item(
+      strong(title)
+        + if values.len() > 0 {
+          (
+            linebreak()
+              + list(
+                tight: true,
+                ..values.map(list.item),
+              )
+          )
+        },
+    ),
   )
 
-  // Split array into columns
-  let split-columns(values) = values.chunks(n-rows)
-
-  // Apply styles to a keyword representing 2nd level item in a list
-  let keyword(word) = list.with(marker: none)(list(word))
-
-  // Render a column of keywords
-  let grid-column(col-vals) = grid(rows: n-rows, row-gutter: row-gutter, ..col-vals.map(keyword))
-
-  // Render a group of keywords
-  let group-keywords(values) = {
-    let n-columns = calc.ceil(values.len() / n-rows)
-    let grid-not-intended = grid(columns: (1fr,) * n-columns, ..split-columns(values).map(
-        grid-column,
-      ))
-    grid(
-      columns: (0.9em, 1fr),
-      none, grid-not-intended,
-    )
-  }
-
-  // Render the final grid of keywords with group titles
   if columns == auto {
-    columns = (auto,) * n-groups
+    columns = (1fr,) * n-groups
   }
 
+  // Render all columns in a grid layout
   grid(
-    rows: 2,
-    row-gutter: 0.3em,
     columns: columns,
+    row-gutter: row-gutter,
     column-gutter: column-gutter,
-    ..skills.keys().map(title => group-title(strong(title))),
-    ..skills.values().map(group-keywords),
+    align: left + top,
+    ..skill-groups.pairs().map(((title, values)) => keyword-group(title, values)),
   )
 }
 
@@ -138,7 +126,9 @@
   let second-line = {
     set text(size: 0.9em)
     emph(organization)
-    if organization-note != none { ghost(bullet-separator) + ghost(italic: true, organization-note) }
+    if organization-note != none {
+      ghost(bullet-separator) + ghost(italic: true, organization-note)
+    }
     if location != none { [|] + emph(location) }
   }
 
