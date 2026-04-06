@@ -119,16 +119,16 @@
 // CV list item
 #let cv-item(
   title: [],
-  title-comment: none,
+  title-note: none,
   organization: [],
-  organization-comment: none,
+  organization-note: none,
   dates: [],
   location: none,
 ) = {
   // Make the first line
   let first-line = {
     text(weight: "bold", title)
-    if title-comment != none { [ > ] + emph(title-comment) }
+    if title-note != none { [ > ] + emph(title-note) }
     [|] + dates
   }
 
@@ -136,7 +136,7 @@
   let second-line = {
     set text(size: 0.9em)
     emph(organization)
-    if organization-comment != none { ghost([ > ]) + ghost(italic: true, organization-comment) }
+    if organization-note != none { ghost([ > ]) + ghost(italic: true, organization-note) }
     if location != none { [|] + emph(location) }
   }
 

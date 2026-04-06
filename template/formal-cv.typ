@@ -63,7 +63,7 @@
 - #cv-item(
     title: [Professor],
     organization: [Institute for Advanced Study],
-    organization-comment: [School of Mathematics],
+    organization-note: [School of Mathematics],
     dates: [Oct '33 -- Apr '55],
     location: [Princeton, NJ],
   )
@@ -82,7 +82,7 @@
 - #cv-item(
     title: [Professor],
     organization: [Kaiser Wilhelm Institute],
-    organization-comment: [Director of Physics],
+    organization-note: [Director of Physics],
     dates: [Apr '14 -- Dec '32],
     location: [Berlin, Germany],
   )
@@ -124,7 +124,7 @@
 
 - #cv-item(
     title: [Physics],
-    title-comment: [PhD],
+    title-note: [PhD],
     organization: [University of Zurich],
     dates: [Jan '06],
   )
@@ -132,9 +132,9 @@
 
 - #cv-item(
     title: [Mathematics and Physics],
-    title-comment: [Diploma],
+    title-note: [Diploma],
     organization: [Swiss Federal Polytechnic],
-    organization-comment: [ETH Zurich],
+    organization-note: [ETH Zurich],
     dates: [Jul '00],
   )
   #small[_Thesis_: Consequences of Capillarity Phenomena]
