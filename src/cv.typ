@@ -116,6 +116,8 @@
   )
 }
 
+#let bullet-separator = [ • ]
+
 // CV list item
 #let cv-item(
   title: [],
@@ -128,7 +130,7 @@
   // Make the first line
   let first-line = {
     text(weight: "bold", title)
-    if title-note != none { [ > ] + emph(title-note) }
+    if title-note != none { bullet-separator + emph(title-note) }
     [|] + dates
   }
 
@@ -136,7 +138,7 @@
   let second-line = {
     set text(size: 0.9em)
     emph(organization)
-    if organization-note != none { ghost([ > ]) + ghost(italic: true, organization-note) }
+    if organization-note != none { ghost(bullet-separator) + ghost(italic: true, organization-note) }
     if location != none { [|] + emph(location) }
   }
 
@@ -151,7 +153,7 @@
 
 #let pub-item(title: [], journal: [], year: [], url: none) = {
   strong(year) + h(0.5em)
-  title + [ > ]
+  title + bullet-separator
   emph(journal)
 }
 

@@ -102,7 +102,6 @@
 // Function to apply custom syntax
 #let formal-syntax(body) = {
   // Custom syntax
-  show ">": "•"
   show "|": h(1fr)
   body
 }
