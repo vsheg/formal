@@ -17,7 +17,7 @@ docs: $(DOCS)
 
 docs/%.png: template/%.typ
 	@mkdir -p docs
-	typst compile --root . $< $@ --format png --pages 1 --ppi 250
+	typst compile --root . $< $@ --format png --pages 1 --ppi 200
 	oxipng -o 4 --strip safe --alpha docs/*.png
 
 clean:
