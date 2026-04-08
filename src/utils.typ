@@ -45,6 +45,17 @@
   "➤",
 )
 
+#let dotted-line(
+  width: 1fr,
+  length: 99%, // HACK: prevent extra dot at the end
+  stroke: (dash: "loosely-dotted"),
+  baseline: -0.3em,
+) = box(
+  width: width,
+  line(length: length, stroke: stroke),
+  baseline: baseline,
+)
+
 
 #let draft-pattern = {
   let element = text(size: 2em, fill: gray.opacify(-90%))[*DRAFT*]

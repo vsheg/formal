@@ -69,6 +69,8 @@
   let keyword-group(title, values) = list(
     list.item(
       strong(title)
+        + h(0.5em)
+        + dotted-line()
         + if values.len() > 0 {
           (
             linebreak()

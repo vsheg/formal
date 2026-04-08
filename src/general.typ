@@ -1,4 +1,4 @@
-#import "utils.typ": arrowhead, detail-stack, draft-pattern, inline-heading, star
+#import "utils.typ": arrowhead, detail-stack, dotted-line, draft-pattern, inline-heading, star
 #import "defs.typ": *
 
 // Function to render a ghost text
