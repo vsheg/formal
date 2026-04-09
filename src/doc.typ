@@ -1,6 +1,6 @@
 #import "general.typ": (
-  accent-color, detail-stack, draft-pattern, font-size, formal-general, formal-syntax, ghost,
-  ghost-color, inline-heading, smaller-font-size,
+  accent-color, detail-stack, draft-pattern, font-size, formal-general, ghost, ghost-color,
+  inline-heading, smaller-font-size,
 )
 #import "@preview/drafting:0.2.2": margin-note, set-page-properties
 
@@ -135,7 +135,6 @@
   font-size: font-size,
 ) = {
   show: formal-general.with(font-size: font-size)
-  show: formal-syntax
 
   show: style-text.with(lang: lang)
   show: style-page.with(
