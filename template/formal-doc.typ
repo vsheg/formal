@@ -86,11 +86,8 @@ Equilibrium is always a minimum of $A$.
   columns: 4,
 
   table.header[Potential][Natural variables][Eq. condition][Typical context],
-
   [Internal energy $U$], [$S, V, m_j$], [Minimum at constant $S, V$], [Isolated systems],
-
   [Helmholtz $F$], [$T, V, m_j$], [Minimum at constant $T, V$], [Sealed vessels],
-
   [Gibbs $G$], [$T, p, m_j$], [Minimum at constant $T, p$], [Open-atmosphere],
 )
 

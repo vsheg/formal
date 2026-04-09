@@ -38,8 +38,9 @@
   body
 }
 
-#let style-tables(body) = {
+#let style-tables(smaller-font-size: smaller-font-size, body) = {
   show table: set text(size: smaller-font-size)
+  show table.cell.where(y: 0): strong
 
   set table(
     stroke: (_, y) => (
@@ -48,8 +49,10 @@
       bottom: if y == 0 { 0.5pt + accent-color },
     ),
   )
-  set table(align: center + horizon)
+
+  set table(align: horizon)
   // TODO: Add header style
+  // Currently not supported: https://github.com/typst/typst/issues/3640
   body
 }
 
