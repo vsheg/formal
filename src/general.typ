@@ -76,8 +76,15 @@
   show: style-headings.with(font-size: font-size)
   show: style-math
 
-  show raw: set text(size: 0.9em)
-  show link: set text(size: 0.8em)
+  show raw: it => text(size: smaller-font-size, it)
+
+  show link: it => {
+    if type(it.dest) == str and it.body.func() == text and it.body.text == it.dest {
+      link(it.dest, raw(it.dest))
+    } else {
+      it
+    }
+  }
 
   set list(
     marker: (
@@ -98,4 +105,3 @@
   set page(margin: 1.2cm, background: frame)
   body
 }
-
