@@ -4,7 +4,7 @@ VERSION := $(shell grep '^version = ' typst.toml | sed 's/version = "\(.*\)"/\1/
 UNAME := $(shell uname -s 2>/dev/null)
 
 TEMPLATES = \
-	template/formal-doc.typ \
+	template/formal-text.typ \
 	template/formal-letter.typ \
 	template/formal-cv.typ \
 	template/formal-poster.typ

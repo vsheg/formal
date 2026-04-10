@@ -1,6 +1,6 @@
-#import "@preview/formal:0.2.0": accent-color, formal-doc, margin, note
+#import "@preview/formal:0.2.0": accent-color, formal-text, margin, note
 
-#show: formal-doc.with(
+#show: formal-text.with(
   authors: [J. Willard Gibbs],
   date: [October 1898],
 )

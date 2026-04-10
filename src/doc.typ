@@ -122,7 +122,7 @@
   margin-note(side: right, stroke: none, content)
 }
 
-#let formal-doc(
+#let formal-text(
   body,
   authors: none,
   date: none,

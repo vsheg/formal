@@ -7,7 +7,7 @@ A template collection for [Typst](https://typst.app) to create professional and 
 Install the package using Typst's package registry:
 
 ```typst
-#import "@preview/formal:0.2.0": formal-doc, formal-cv, formal-letter, formal-poster
+#import "@preview/formal:0.2.0": formal-text, formal-cv, formal-letter, formal-poster
 ```
 
 ## Usage
@@ -19,8 +19,8 @@ Explore usage examples in the [GitHub repository](https://github.com/vsheg/forma
     <td align="center" valign="top">
       <strong>Document</strong>
       <br />
-      <a href="template/formal-doc.typ">
-        <img src="docs/formal-doc.png" alt="Document Preview" />
+      <a href="template/formal-text.typ">
+        <img src="docs/formal-text.png" alt="Document Preview" />
       </a>
       <br /><br />
       <strong>CV</strong>
