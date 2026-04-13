@@ -120,7 +120,7 @@
   let first-line = {
     text(weight: "bold", title)
     if title-note != none { bullet-separator + emph(title-note) }
-    [|] + dates
+    bullet-separator + dates
   }
 
   // Make the second line
@@ -130,7 +130,7 @@
     if organization-note != none {
       ghost(bullet-separator) + ghost(italic: true, organization-note)
     }
-    if location != none { [|] + emph(location) }
+    if location != none { bullet-separator + emph(location) }
   }
 
   // Render the list item
