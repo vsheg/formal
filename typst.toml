@@ -14,4 +14,4 @@ keywords = ["cv", "poster", "document", "academic"]
 [template]
 path = "template"
 entrypoint = "formal-cv.typ"
-thumbnail = "docs/formal-cv.png"
+thumbnail = "docs/formal-cv.webp"

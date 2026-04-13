@@ -9,19 +9,20 @@ TEMPLATES = \
 	template/formal-cv.typ \
 	template/formal-poster.typ
 
-DOCS = $(patsubst template/%.typ,docs/%.png,$(TEMPLATES))
+WEBP_DOCS = $(patsubst template/%.typ,docs/%.webp,$(TEMPLATES))
 
 all: docs
 
-docs: $(DOCS)
+docs: $(WEBP_DOCS)
 
-docs/%.png: template/%.typ
+docs/%.webp: template/%.typ
 	@mkdir -p docs
-	typst compile --root . $< $@ --format png --pages 1 --ppi 200
-	oxipng -o 4 --strip safe --alpha docs/*.png
+	typst compile --root . $< docs/$*.png --format png --pages 1 --ppi 200
+	cwebp -q 80 docs/$*.png -o $@
+	rm -f docs/$*.png
 
 clean:
-	rm -f docs/*.png
+	rm -f docs/*.png docs/*.webp
 
 check:
 	typst-package-check check

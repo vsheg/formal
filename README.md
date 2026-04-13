@@ -19,27 +19,27 @@ Explore usage examples in the [GitHub repository](https://github.com/vsheg/forma
     <td align="center" valign="top">
       <strong><a href="template/formal-text.typ">Text</a></strong>
       <br />
-      <a href="docs/formal-text.png">
-        <img src="docs/formal-text.png" alt="Text Preview" />
+      <a href="docs/formal-text.webp">
+        <img src="docs/formal-text.webp" alt="Text Preview" />
       </a>
       <br /><br />
       <strong><a href="template/formal-cv.typ">CV</a></strong>
       <br />
-      <a href="docs/formal-cv.png">
-        <img src="docs/formal-cv.png" alt="CV Preview" />
+      <a href="docs/formal-cv.webp">
+        <img src="docs/formal-cv.webp" alt="CV Preview" />
       </a>
       <br /><br />
       <strong><a href="template/formal-letter.typ">Letter</a></strong>
       <br />
-      <a href="docs/formal-letter.png">
-        <img src="docs/formal-letter.png" alt="Letter Preview" />
+      <a href="docs/formal-letter.webp">
+        <img src="docs/formal-letter.webp" alt="Letter Preview" />
       </a>
     </td>
     <td align="center" valign="middle">
       <strong><a href="template/formal-poster.typ">Poster</a></strong>
       <br />
-      <a href="docs/formal-poster.png">
-        <img src="docs/formal-poster.png" alt="Poster Preview" />
+      <a href="docs/formal-poster.webp">
+        <img src="docs/formal-poster.webp" alt="Poster Preview" />
       </a>
     </td>
   </tr>
