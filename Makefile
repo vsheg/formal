@@ -18,7 +18,7 @@ docs: $(WEBP_DOCS)
 docs/%.webp: template/%.typ
 	@mkdir -p docs
 	typst compile --root . $< docs/$*.png --format png --pages 1 --ppi 200
-	cwebp -q 80 docs/$*.png -o $@
+	cwebp -q 90 docs/$*.png -o $@
 	rm -f docs/$*.png
 
 clean:
