@@ -8,10 +8,8 @@
   // Styles
 
   show: formal-general.with(frame-thickness: frame-thickness)
-  show: formal-syntax
   set page(margin: margin)
   show heading: set align(center)
 
   body
 }
-

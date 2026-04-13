@@ -30,7 +30,6 @@
 ) = {
   // Apply shared styles
   show: formal-general.with(frame-thickness: frame-thickness)
-  show: formal-syntax
 
   // Apply overrides
   show: style-headings
