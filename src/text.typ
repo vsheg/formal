@@ -2,16 +2,17 @@
   accent-color, detail-stack, draft-pattern, font-size, formal-general, ghost, ghost-color,
   inline-heading, smaller-font-size,
 )
-#import "@preview/drafting:0.2.2": margin-note, set-page-properties
+#import "@preview/drafting:0.2.2": margin-note, set-margin-note-defaults, set-page-properties
 
 #let style-page(
   draft: false,
   content-width: 180mm,
   content-height: 250mm,
   margin-size: 10mm,
-  margin-ratio: 0.34,
+  margin-ratio: 1 / 3,
   body,
 ) = {
+  let right-note-width = margin-ratio * content-width
   let full-width = content-width + 2 * margin-size
   let full-height = content-height + 2 * margin-size
 
@@ -21,12 +22,21 @@
     margin: (
       y: margin-size,
       left: margin-size,
-      right: margin-ratio * content-width,
+      right: margin-size + right-note-width,
     ),
     background: if draft { draft-pattern } else { none },
   )
 
-  set-page-properties()
+  set-page-properties(
+    margin-right: right-note-width,
+    margin-left: margin-size,
+  )
+
+  set-margin-note-defaults(
+    stroke: none,
+    side: right,
+  )
+
   body
 }
 
@@ -67,6 +77,12 @@
   body
 }
 
+#let wide(body) = context {
+  let left-margin = page.margin.left
+  let right-margin = page.margin.right
+  block(width: 100% + calc.max(0pt, right-margin - left-margin), body)
+}
+
 #let margin(title: none, ..content) = {
   show: style-note
 
@@ -81,7 +97,7 @@
 
   let title = inline-heading(title)
   v(0pt, weak: true)
-  margin-note(side: right, stroke: none, if title == none { body } else { title + body })
+  margin-note(if title == none { body } else { title + body })
 }
 
 // Paragraph-level note
@@ -119,7 +135,7 @@
     return none
   }
 
-  margin-note(side: right, stroke: none, content)
+  margin-note(content)
 }
 
 #let formal-text(
@@ -131,7 +147,7 @@
   content-width: 180mm,
   content-height: 250mm,
   margin-size: 10mm,
-  margin-ratio: 0.34,
+  margin-ratio: 1 / 3,
   font-size: font-size,
 ) = {
   show: formal-general.with(font-size: font-size)
