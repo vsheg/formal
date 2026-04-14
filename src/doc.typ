@@ -67,6 +67,12 @@
   body
 }
 
+#let wide(body) = context {
+  let left-margin = page.margin.left
+  let right-margin = page.margin.right
+  block(width: 100% + calc.max(0pt, right-margin - left-margin), body)
+}
+
 #let margin(title: none, ..content) = {
   show: style-note
 
