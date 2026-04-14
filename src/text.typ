@@ -1,3 +1,4 @@
+
 #import "general.typ": (
   accent-color, detail-stack, draft-pattern, font-size, formal-general, ghost, ghost-color,
   inline-heading, smaller-font-size,
