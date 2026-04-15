@@ -1,8 +1,10 @@
-#import "@preview/formal:0.2.0": accent-color, formal-text, margin, note
+#import "@preview/formal:0.2.0": accent-color, formal-text, marginalia, note
 
 #show: formal-text.with(
   authors: [J. Willard Gibbs],
   date: [October 1898],
+  page-margins: 10mm,
+  marginalia-width: 1fr / 3,
 )
 
 = Lecture: Equilibrium of Heterogeneous Substances
@@ -10,7 +12,7 @@
 A system is in thermodynamic equilibrium when no spontaneous change can occur: nothing
 inside wants to rearrange, and nothing outside is driving it.
 
-#margin(title: [Key idea])[
+#marginalia(title: [Key idea])[
   Equilibrium means the appropriate potential $A$ is at a minimum under the imposed
   constraints ($A = U$, $F$, or $G$ depending on what is fixed). Two things to keep
   in mind:
@@ -39,7 +41,7 @@ extensive variable.
   energy unchanged to first order --- that is exactly what @fundamental encodes.
 ]
 
-#margin(title: [Reading @fundamental])[
+#marginalia(title: [Reading @fundamental])[
   Each term is intensive $times$ $dif$(extensive): $T dif S$, $p dif V$,
   $mu_j dif m_j$. Think of the intensive quantity as a "force" and the extensive
   differential as the conjugate "displacement". This structure recurs throughout
@@ -54,7 +56,7 @@ composition, and the direction of every diffusive process.
 
 == Thermodynamic potentials
 
-#margin({
+#marginalia({
   import "@preview/lilaq:0.5.0" as lq
   let a(x) = calc.pow(x - 0.6, 2)
   let xs = lq.linspace(0, 1, num: 100)
@@ -91,7 +93,7 @@ Equilibrium is always a minimum of $A$.
   [Gibbs $G$], [$T, p, m_j$], [Minimum at constant $T, p$], [Open-atmosphere],
 )
 
-#margin(title: [Common mistake])[
+#marginalia(title: [Common mistake])[
   The default choice is $G$, but that is only correct when $p$ is fixed. A sealed
   rigid vessel fixes $V$ --- use $F$. Choosing the wrong potential yields equilibrium
   conditions expressed in the wrong variables, which complicates rather than clarifies.
@@ -117,7 +119,7 @@ Pure water has $n = 1$. One phase gives $f = 2$; two phases in coexistence give 
 so fixing temperature determines the boiling pressure; at the triple point $f = 0$ and
 no variable is free.
 
-#margin(
+#marginalia(
   v(-2cm),
   bibliography(title: none, "refs.bib"),
 )

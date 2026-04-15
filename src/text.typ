@@ -5,32 +5,43 @@
 )
 #import "@preview/drafting:0.2.2": margin-note, set-margin-note-defaults, set-page-properties
 
+#let resolve-marginalia-width(content-width, marginalia-width) = {
+  if type(marginalia-width) == type(1fr) {
+    return marginalia-width / 1fr * content-width
+  }
+
+  marginalia-width
+}
+
 #let style-page(
   draft: false,
   content-width: 180mm,
   content-height: 250mm,
-  margin-size: 10mm,
-  margin-ratio: 1 / 3,
+  page-margins: 10mm,
+  marginalia-width: 1fr / 3,
+  marginalia-gutter: 0pt,
   body,
 ) = {
-  let right-note-width = margin-ratio * content-width
-  let full-width = content-width + 2 * margin-size
-  let full-height = content-height + 2 * margin-size
+  let marginalia-span = resolve-marginalia-width(content-width, marginalia-width)
+  let right-span = marginalia-gutter + marginalia-span
+  let full-width = content-width + 2 * page-margins
+  let full-height = content-height + 2 * page-margins
 
   set page(
     width: full-width,
     height: full-height,
     margin: (
-      y: margin-size,
-      left: margin-size,
-      right: margin-size + right-note-width,
+      y: page-margins,
+      left: page-margins,
+      right: page-margins + right-span,
     ),
     background: if draft { draft-pattern } else { none },
   )
 
   set-page-properties(
-    margin-right: right-note-width,
-    margin-left: margin-size,
+    margin-right: marginalia-span,
+    margin-left: page-margins,
+    page-offset-x: marginalia-gutter,
   )
 
   set-margin-note-defaults(
@@ -68,7 +79,7 @@
 }
 
 
-// NOTES AND MARGINS
+// NOTES AND MARGINALIA
 
 // Note styles
 #let style-note(body) = {
@@ -84,7 +95,7 @@
   block(width: 100% + calc.max(0pt, right-margin - left-margin), body)
 }
 
-#let margin(title: none, ..content) = {
+#let marginalia(title: none, ..content) = {
   show: style-note
 
   let body = if content.pos().len() == 1 {
@@ -147,8 +158,9 @@
   draft: false,
   content-width: 180mm,
   content-height: 250mm,
-  margin-size: 10mm,
-  margin-ratio: 1 / 3,
+  page-margins: 10mm,
+  marginalia-width: 1fr / 3,
+  marginalia-gutter: 0pt,
   font-size: font-size,
 ) = {
   show: formal-general.with(font-size: font-size)
@@ -158,8 +170,9 @@
     draft: draft,
     content-width: content-width,
     content-height: content-height,
-    margin-size: margin-size,
-    margin-ratio: margin-ratio,
+    page-margins: page-margins,
+    marginalia-width: marginalia-width,
+    marginalia-gutter: marginalia-gutter,
   )
   show: style-tables
 
