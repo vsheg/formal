@@ -3,8 +3,6 @@
 #show: formal-text.with(
   authors: [J. Willard Gibbs],
   date: [October 1898],
-  page-margins: 10mm,
-  marginalia-width: 1fr / 3,
 )
 
 = Lecture: Equilibrium of Heterogeneous Substances

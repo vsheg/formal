@@ -5,6 +5,37 @@
 )
 #import "@preview/drafting:0.2.2": margin-note, set-margin-note-defaults, set-page-properties
 
+#let page-margin-side(page-margin, side) = {
+  if type(page-margin) == length {
+    return page-margin
+  }
+
+  let keys = if side == "top" {
+    ("top", "y", "rest")
+  } else if side == "right" {
+    ("right", "outside", "x", "rest")
+  } else if side == "bottom" {
+    ("bottom", "y", "rest")
+  } else {
+    ("left", "inside", "x", "rest")
+  }
+
+  for key in keys {
+    if key in page-margin.keys() {
+      return page-margin.at(key)
+    }
+  }
+}
+
+#let resolve-page-margin(page-margin) = {
+  (
+    top: page-margin-side(page-margin, "top"),
+    right: page-margin-side(page-margin, "right"),
+    bottom: page-margin-side(page-margin, "bottom"),
+    left: page-margin-side(page-margin, "left"),
+  )
+}
+
 #let resolve-marginalia-width(content-width, marginalia-width) = {
   if type(marginalia-width) == type(1fr) {
     return marginalia-width / 1fr * content-width
@@ -15,41 +46,65 @@
 
 #let style-page(
   draft: false,
-  content-width: 180mm,
-  content-height: 250mm,
-  page-margins: 10mm,
-  marginalia-width: 1fr / 3,
-  marginalia-gutter: 0pt,
+  page-paper: "a4",
+  page-width: auto,
+  page-height: auto,
+  page-margin: 10mm,
+  marginalia-width: 0.33fr,
+  marginalia-gutter: 5mm,
   body,
 ) = {
-  let marginalia-span = resolve-marginalia-width(content-width, marginalia-width)
-  let right-span = marginalia-gutter + marginalia-span
-  let full-width = content-width + 2 * page-margins
-  let full-height = content-height + 2 * page-margins
+  let resolved-page-margin = resolve-page-margin(page-margin)
+  let page-args = (background: if draft { draft-pattern } else { none })
 
-  set page(
-    width: full-width,
-    height: full-height,
-    margin: (
-      y: page-margins,
-      left: page-margins,
-      right: page-margins + right-span,
-    ),
-    background: if draft { draft-pattern } else { none },
-  )
+  if page-width != auto and page-height != auto {
+    page-args.width = page-width
+    page-args.height = page-height
+  } else {
+    page-args.paper = page-paper
+  }
 
-  set-page-properties(
-    margin-right: marginalia-span,
-    margin-left: page-margins,
-    page-offset-x: marginalia-gutter,
-  )
+  set page(..page-args)
 
-  set-margin-note-defaults(
-    stroke: none,
-    side: right,
-  )
+  context {
+    let page-content-width = page.width - resolved-page-margin.left - resolved-page-margin.right
+    let marginalia-span = resolve-marginalia-width(page-content-width, marginalia-width)
+    let right-span = marginalia-gutter + marginalia-span
+    let text-width = (
+      page.width - resolved-page-margin.left - resolved-page-margin.right - right-span
+    )
 
-  body
+    // NOTE: drafting places right-side note boxes 2% of the text width away from the text column.
+    // Keep the note rect itself at zero inset so `marginalia-gutter` remains the visible gap.
+    let drafting-offset = 2 * text-width / 100
+
+    let final-page-args = (
+      page-args
+        + (
+          margin: (
+            top: resolved-page-margin.top,
+            left: resolved-page-margin.left,
+            bottom: resolved-page-margin.bottom,
+            right: resolved-page-margin.right + right-span,
+          ),
+        )
+    )
+
+    set page(..final-page-args)
+
+    set-page-properties(
+      margin-right: marginalia-span,
+      page-offset-x: marginalia-gutter - drafting-offset,
+    )
+
+    set-margin-note-defaults(
+      rect: rect.with(inset: 0pt),
+      stroke: none,
+      side: right,
+    )
+
+    body
+  }
 }
 
 #let style-text(lang: "en", body) = {
@@ -156,11 +211,12 @@
   date: none,
   lang: "en",
   draft: false,
-  content-width: 180mm,
-  content-height: 250mm,
-  page-margins: 10mm,
-  marginalia-width: 1fr / 3,
-  marginalia-gutter: 0pt,
+  page-paper: "a4",
+  page-width: auto,
+  page-height: auto,
+  page-margin: 10mm,
+  marginalia-width: 0.33fr,
+  marginalia-gutter: 5mm,
   font-size: font-size,
 ) = {
   show: formal-general.with(font-size: font-size)
@@ -168,9 +224,10 @@
   show: style-text.with(lang: lang)
   show: style-page.with(
     draft: draft,
-    content-width: content-width,
-    content-height: content-height,
-    page-margins: page-margins,
+    page-paper: page-paper,
+    page-width: page-width,
+    page-height: page-height,
+    page-margin: page-margin,
     marginalia-width: marginalia-width,
     marginalia-gutter: marginalia-gutter,
   )
