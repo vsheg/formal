@@ -23,9 +23,16 @@ docs/%.webp: template/%.typ
 
 clean:
 	rm -f docs/*.png docs/*.webp
+	find tests -type d \( -name out -o -name diff \) -exec rm -rf {} +
 
 check:
 	typst-package-check check
+
+test:
+	tt run
+
+test-update:
+	tt update
 
 build:
 	zip -r formal.zip src/ template/ docs/ LICENSE README.md typst.toml
@@ -55,4 +62,4 @@ link-windows:
 	if not exist "%LOCALAPPDATA%\typst\packages\preview\$(PACKAGE_NAME)" mkdir "%LOCALAPPDATA%\typst\packages\preview\$(PACKAGE_NAME)"
 	mklink /D "%LOCALAPPDATA%\typst\packages\preview\$(PACKAGE_NAME)\$(VERSION)" "$(ROOT_DIR)"
 
-.PHONY: all docs clean check build link link-macos link-linux link-windows
+.PHONY: all docs clean check test test-update build link link-macos link-linux link-windows
