@@ -1,21 +1,48 @@
-#import "/tests/text/utils.typ": sizing-case
+#import "/src/formal.typ": formal-text, marginalia
 
-#sizing-case(
-  page-width: 90mm,
-  page-height: 120mm,
-  marginalia-width: 14mm,
+#set rect(
+  width: 100%,
+  height: 1fr,
+  fill: luma(80%),
+  stroke: none,
 )
 
-#sizing-case(
-  page-width: 84mm,
-  page-height: 110mm,
-  marginalia-width: 0pt,
-  marginalia-gutter: 0pt,
-  note: false,
-)
+#let r = rect()
 
-#sizing-case(
-  page-width: 90mm,
-  page-height: 120mm,
-  marginalia-width: 28mm,
-)
+#let content = {
+  marginalia(lorem(10))
+  r
+  marginalia(lorem(20))
+  r
+  marginalia(lorem(30))
+  r
+  marginalia(lorem(40))
+  r
+}
+
+// TEST 1: Default marginalia width
+#{
+  show: formal-text
+  content
+  pagebreak()
+}
+
+// TEST 2: 50% marginalia width
+#{
+  show: formal-text.with(marginalia-width: 0.5fr)
+  content
+  pagebreak()
+}
+
+// TEST 3: 25% marginalia width
+#{
+  show: formal-text.with(marginalia-width: 0.25fr)
+  content
+  pagebreak()
+}
+
+// TEST 4: 10cm marginalia width
+#{
+  show: formal-text.with(marginalia-width: 10cm)
+  content
+}
