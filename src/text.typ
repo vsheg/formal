@@ -63,27 +63,25 @@
     let drafting-gap = 2 * text-width / 100
     let note-region-width = marginalia-column-width + 2 * drafting-gap
 
-    block(
-      width: text-width,
-      {
-        set-page-properties(
-          margin-left: resolved-page-margin.left,
-          margin-right: note-region-width,
-          margin-inside: resolved-page-margin.left,
-          margin-outside: note-region-width,
-          page-width: text-width,
-          page-offset-x: marginalia-gutter - drafting-gap,
-        )
+    set page(margin: (
+      top: resolved-page-margin.top,
+      bottom: resolved-page-margin.bottom,
+      left: resolved-page-margin.left,
+      right: resolved-page-margin.right + marginalia-gutter + marginalia-column-width,
+    ))
 
-        set-margin-note-defaults(
-          rect: marginalia-rect,
-          stroke: none,
-          side: right,
-        )
-
-        body
-      },
+    set-page-properties(
+      margin-right: note-region-width,
+      page-offset-x: marginalia-gutter - drafting-gap,
     )
+
+    set-margin-note-defaults(
+      rect: marginalia-rect,
+      stroke: none,
+      side: right,
+    )
+
+    body
   }
 }
 
@@ -145,7 +143,7 @@
 
   let title = inline-heading(title)
   v(0pt, weak: true)
-  margin-note(if title == none { body } else { title + body })
+  margin-note(if title == none { body } else { title + body }, dy: -0.9em) // HACK: `dy` aligns the tops of note and body paragraphs
 }
 
 // Paragraph-level note
