@@ -142,8 +142,7 @@
   }
 
   let title = inline-heading(title)
-  v(0pt, weak: true)
-  margin-note(if title == none { body } else { title + body }, dy: -0.9em) // HACK: `dy` aligns the tops of note and body paragraphs
+  margin-note(if title == none { body } else { title + body }, dy: -1em)
 }
 
 // Paragraph-level note
