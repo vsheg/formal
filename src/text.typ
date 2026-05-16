@@ -160,6 +160,7 @@
   }
 
   block(
+    width: 100%,
     fill: ghost-color.transparentize(95%),
     inset: 3mm,
     radius: 2mm,
