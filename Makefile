@@ -1,6 +1,7 @@
 ROOT_DIR := $(CURDIR)
 PACKAGE_NAME := formal
 VERSION := $(shell grep '^version = ' typst.toml | sed 's/version = "\(.*\)"/\1/')
+ARCHIVE := $(PACKAGE_NAME):$(VERSION).zip
 UNAME := $(shell uname -s 2>/dev/null)
 
 TEMPLATES = \
@@ -22,7 +23,7 @@ docs/%.webp: template/%.typ
 	rm -f docs/$*.png
 
 clean:
-	rm -f docs/*.png docs/*.webp
+	rm -f docs/*.png docs/*.webp $(ARCHIVE)
 	find tests -type d \( -name out -o -name diff \) -exec rm -rf {} +
 
 check:
@@ -35,7 +36,8 @@ test-update:
 	tt update
 
 build:
-	zip -r formal.zip src/ template/ docs/ LICENSE README.md typst.toml
+	rm -f $(ARCHIVE)
+	zip -r $(ARCHIVE) src/ template/ docs/ LICENSE README.md typst.toml
 
 link:
 ifeq ($(OS),Windows_NT)
